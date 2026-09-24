@@ -186,4 +186,16 @@ limitations under the License.
     <string name="startup_package_low_inventory_detail">当前可见软件包数量：%1$d。启动将继续，但 Dangerous Apps 会将这种低清单状态作为潜在过滤证据进行审查。</string>
     <string name="startup_package_ready_headline">PackageManager 清单看起来完整。</string>
     <string name="startup_package_ready_detail">当前可见软件包数量：%1$d。Dangerous Apps 可以使用标准的软件包清单路径。</string>
+    <string name="mount_diagnostic_clipboard_label">跨进程挂载视图详情</string>
+    <string name="author_summary_searchur">仪表盘、危险应用与 Zygisk 检测</string>
+    <string name="author_summary_alex">SELinux（C++、Kotlin）</string>
+    <string name="author_summary_hsskyboy">仓库修复、内核检测</string>
+    <string name="author_summary_lingqing">TEE</string>
+    <string name="author_summary_sqmy">Kotlin</string>
+    <string name="author_summary_victor">持续集成</string>
+    <string name="author_summary_zg089">阿拉伯语翻译</string>
+    <string name="author_summary_coolzyd">内核检测</string>
+    <string name="author_summary_947409161">乌克兰语翻译</string>
+    <string name="author_summary_mirin">界面设计</string>
+    <string name="author_summary_default">贡献者</string>
 </resources>
