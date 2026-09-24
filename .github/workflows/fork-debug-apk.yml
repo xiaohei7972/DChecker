@@ -81,6 +81,17 @@ jobs:
           NDK: ${{ steps.toolchain.outputs.ndk }}
         run: |
           set -euo pipefail
+          sdk_root="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
+          sdkmanager_bin="$(find "$sdk_root/cmdline-tools" -mindepth 2 -maxdepth 3 -type f -name sdkmanager -print -quit)"
+          if [ -z "$sdkmanager_bin" ]; then
+            echo "Android sdkmanager is missing from $sdk_root/cmdline-tools" >&2
+            exit 1
+          fi
+
+          # The hosted runner has command-line tools but does not put sdkmanager on PATH.
+          set +o pipefail
+          yes | "$sdkmanager_bin" --licenses >/dev/null
+          set -o pipefail
 
           packages=(
             "platform-tools"
@@ -91,7 +102,7 @@ jobs:
           )
 
           for attempt in 1 2 3; do
-            if sdkmanager --install "${packages[@]}"; then
+            if "$sdkmanager_bin" --install "${packages[@]}"; then
               break
             fi
             if [ "${attempt}" -eq 3 ]; then
