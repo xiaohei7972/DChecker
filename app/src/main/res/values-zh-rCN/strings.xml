@@ -154,7 +154,7 @@ limitations under the License.
     <string name="startup_notifications_skip">跳过</string>
     <string name="startup_notifications_skipped_headline">已跳过通知。</string>
     <string name="startup_notifications_skipped_detail">在您稍后授予通知权限之前，扫描进度都只会显示在应用内。</string>
-    <string name="startup_live_update_title">Live Update</string>
+    <string name="startup_live_update_title">实时更新</string>
     <string name="startup_live_update_unsupported_headline">当前 Android 版本不支持提升型持续通知。</string>
     <string name="startup_live_update_unsupported_detail">在拥有通知权限时，Duck Detector 将改用常规通知路径。</string>
     <string name="startup_live_update_waiting_headline">Live Update 依赖通知路径。</string>
