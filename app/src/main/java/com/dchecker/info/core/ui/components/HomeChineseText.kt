@@ -1639,6 +1639,47 @@ object HomeChineseText {
         "Unlocked bootloader" to "Bootloader 已解锁",
         "PackageManager visibility is restricted on this device profile." to "当前设备配置下 PackageManager 可见性受限。",
         "Shared external-storage baseline paths all returned EACCES/EPERM. This suggests shared user gid or related zygote storage groups may have been restricted." to "共享外部存储基线路径全部返回 EACCES/EPERM，这提示 shared user GID 或相关 Zygote 存储组可能受到限制。",
+        "RootOfTrust.verifiedBootState from attestation extension." to "来自证明扩展中的 RootOfTrust.verifiedBootState。",
+        "RootOfTrust.deviceLocked from attestation extension." to "来自证明扩展中的 RootOfTrust.deviceLocked。",
+        "Attested boot hash" to "证明中的启动哈希",
+        "Attested boot key" to "证明中的启动密钥",
+        "Digest missing" to "摘要缺失",
+        "All zeros" to "全为 0",
+        "Verified state coherence" to "验证状态一致性",
+        "Impossible pair" to "不可能的组合",
+        "Unlocked bootloaders allow custom boot images and can disable or bypass normal verified-boot guarantees." to "Bootloader 解锁后可启动自定义 Boot 镜像，并可能禁用或绕过正常的 Verified Boot 保证。",
+        "Verified Boot failure means the boot chain reported a critical verification problem, which is stronger than a normal custom-ROM signal." to "Verified Boot 失败表示启动链报告了严重验证问题，其证据强度高于普通自定义 ROM 信号。",
+        "Self-signed verified boot usually means the bootloader is re-locked against a user-managed key rather than the OEM root of trust." to "自签名 Verified Boot 通常表示 Bootloader 使用用户管理的密钥重新锁定，而非 OEM 信任根。",
+        "Attestation-vs-runtime contradictions are higher confidence than a single suspicious property because hardware-backed and software-readable boot evidence disagree." to "证明结果与运行时信息矛盾的可信度高于单个可疑属性，因为硬件支持的证据与软件可读启动证据彼此不一致。",
+        "Samsung Knox warranty e-fuse appears tripped, which is permanent on supported Samsung devices and often reflects prior unlocking or unofficial boot images." to "Samsung Knox 保修 e-fuse 似乎已熔断；在支持的三星设备上这是永久状态，通常反映曾经解锁或使用过非官方 Boot 镜像。",
+        "Debuggable or insecure build flags reduce confidence in software-readable boot signals and are not normal for production user builds." to "可调试或不安全的构建标志会降低软件可读启动信号的可信度，且不属于正式 user 构建的正常状态。",
+        "This result relies on boot properties only. Root or property-hook layers can spoof these values more easily than attestation RootOfTrust." to "该结果仅依赖启动属性；Root 或属性 Hook 层比 Attestation RootOfTrust 更容易伪装这些值。",
+        "No bootloader or verified-boot signal suggested an unlocked or obviously contradictory boot chain." to "未发现表明 Bootloader 已解锁或启动链明显矛盾的 Verified Boot 信号。",
+        "Bootloader evidence should still be read alongside TEE, kernel, SU, package, and property detectors because modern spoofing stacks often spread signals across layers." to "Bootloader 证据仍应结合 TEE、内核、SU、应用包和系统属性检测结果判断，因为现代伪装方案通常会在多个层面留下信号。",
+        "Tracked boot, AVB, dm-verity, Samsung fuse, and secure-build properties." to "跟踪启动、AVB、dm-verity、Samsung Fuse 与安全构建相关属性。",
+        "android.os.SystemProperties reflection reads for tracked boot properties." to "通过 android.os.SystemProperties 反射读取跟踪的启动属性。",
+        "Single getprop dump reused for cross-source comparisons." to "复用一次 getprop 完整输出进行跨来源比较。",
+        "Raw-boot, lock-state, partition-verity, and build-profile coherence checks." to "检查原始启动参数、锁定状态、分区 Verity 与构建配置之间的一致性。",
+        "Samsung Knox state usually reports NORMAL or TRIPPED." to "Samsung Knox 状态通常为 NORMAL 或 TRIPPED。",
+        "Compared against attested verifiedBootHash when RootOfTrust is available." to "RootOfTrust 可用时，会与证明中的 verifiedBootHash 进行比较。",
+        "dm-verity modes usually map to enforcing, logging, or disabled." to "dm-verity 模式通常对应 enforcing、logging 或 disabled。",
+        "Partition values typically map as 1=enforcing, 2=logging, 0=disabled." to "分区值通常对应 1=enforcing、2=logging、0=disabled。",
+        "Widevine support could not be established; no credential verdict was emitted." to "无法确认 Widevine 支持状态，因此未生成凭据结论。",
+        "Security level unavailable" to "安全等级不可用",
+        "Corroborated anomaly" to "已佐证异常",
+        "Sentinel system ID" to "哨兵 System ID",
+        "Lower security session" to "较低安全等级会话",
+        "Session inconclusive" to "会话结果不确定",
+        "Session level unavailable" to "会话安全等级不可用",
+        "Maximum security constrained" to "最高安全等级受限",
+        "System ID unavailable" to "System ID 不可用",
+        "Native unavailable" to "原生读取不可用",
+        "The NDK property path was unavailable, so Java/native parity was not evaluated." to "NDK 属性读取路径不可用，因此未评估 Java/原生一致性。",
+        "Auxiliary DRM inconsistency" to "辅助 DRM 不一致",
+        "The exact sentinel and a lower maximum-session level were observed despite video/mp4 HW_SECURE_ALL support. This is a critical DRM conflict, not standalone proof of the current bootloader state." to "尽管支持 video/mp4 HW_SECURE_ALL，仍观察到精确哨兵值与较低的最高会话安全等级。这属于严重 DRM 冲突，但不能单独证明当前 Bootloader 状态。",
+        "Auxiliary DRM signal" to "辅助 DRM 信号",
+        "Cross-API mismatch" to "跨 API 不一致",
+        "Java/native disagreement can indicate a MediaDrm hook, spoof, or vendor framework inconsistency." to "Java/原生结果不一致可能表示存在 MediaDrm Hook、伪装或厂商框架不一致。",
     )
 
     private val countPatterns = listOf(
@@ -2104,6 +2145,21 @@ object HomeChineseText {
         }
         Regex("""^PackageManager returned only (\d+) visible packages despite a full inventory result\. This can happen under HMA-style whitelist filtering\.$""").matchEntire(text)?.let {
             return "尽管返回的是完整清单结果，PackageManager 仍只显示 ${it.groupValues[1]} 个可见应用包；这可能发生在 HMA 类白名单过滤环境中。"
+        }
+        Regex("""^Cross-checked across (\d+) sources\.$""").matchEntire(text)?.let {
+            return "已跨 ${it.groupValues[1]} 个来源交叉核验。"
+        }
+        Regex("""^Observed value: (.+)$""").matchEntire(text)?.let {
+            return "观察值：${it.groupValues[1]}"
+        }
+        Regex("""^Root classification: (.+)\.$""").matchEntire(text)?.let {
+            return "信任根分类：${translate(it.groupValues[1])}。"
+        }
+        Regex("""^Java and NDK reads differ for (.+); a hook, spoof, or framework inconsistency is possible\.(.*)$""").matchEntire(text)?.let {
+            return "Java 与 NDK 对 ${it.groupValues[1]} 的读取结果不同，可能存在 Hook、伪装或框架不一致。${it.groupValues[2]}"
+        }
+        Regex("""^One or more vendor properties were unavailable on either the Java or NDK path\.(.*)$""").matchEntire(text)?.let {
+            return "Java 或 NDK 路径中有一个或多个厂商属性不可用。${it.groupValues[1]}"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
