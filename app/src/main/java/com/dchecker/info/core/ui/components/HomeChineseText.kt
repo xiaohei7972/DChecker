@@ -871,6 +871,17 @@ object HomeChineseText {
         "property" to "属性",
         "virtualization" to "虚拟化",
 
+        // Remaining technical labels shown on expanded Home cards.
+        "native /proc" to "原生 /proc",
+        "fallback file reads" to "备用文件读取",
+        "Startup preload:" to "启动预加载：",
+        "Build.TYPE <> fingerprint tail" to "Build.TYPE 与设备指纹尾部不一致",
+        "prop_area hole: u:object_r:shell_prop:s0" to "属性区空洞：u:object_r:shell_prop:s0",
+        "prop_area hole:" to "属性区空洞：",
+        "Android Virtualization Framework: https://source.android.com/docs/core/virtualization" to "Android 虚拟化框架：https://source.android.com/docs/core/virtualization",
+        "Android Emulator: https://developer.android.com/studio/run/emulator" to "Android 模拟器：https://developer.android.com/studio/run/emulator",
+        "AOSP property_contexts: https://android.googlesource.com/platform/system/sepolicy/+/refs/heads/main/private/property_contexts" to "AOSP property_contexts：https://android.googlesource.com/platform/system/sepolicy/+/refs/heads/main/private/property_contexts",
+
         // TEE report headlines and concise explanations.
         "Attestation aligned; local probes need review" to "认证结果一致，但本地探针需要核查",
         "Local TEE attestation checks aligned" to "本地 TEE 认证检查一致",
@@ -1132,6 +1143,10 @@ object HomeChineseText {
         Regex("""^(\d+) critical (.+) signal\(s\)$""") to { m: MatchResult -> "发现 ${m.groupValues[1]} 个严重${translate(m.groupValues[2])}信号" },
         Regex("""^(\d+) (.+) signal\(s\) need review$""") to { m: MatchResult -> "有 ${m.groupValues[1]} 个${translate(m.groupValues[2])}信号待核查" },
         Regex("""^(\d+) (.+) signal\(s\)$""") to { m: MatchResult -> "发现 ${m.groupValues[1]} 个${translate(m.groupValues[2])}信号" },
+        Regex("""^(\d+) ROM signatures$""") to { m: MatchResult -> "发现 ${m.groupValues[1]} 个 ROM 特征" },
+        Regex("""^(\d+) modification signal\(s\)$""") to { m: MatchResult -> "发现 ${m.groupValues[1]} 个修改信号" },
+        Regex("""^(\d+) native symbol trace\(s\)$""") to { m: MatchResult -> "发现 ${m.groupValues[1]} 条原生符号痕迹" },
+        Regex("""^(\d+) visible$""") to { m: MatchResult -> "${m.groupValues[1]} 个可见" },
         Regex("""^(\d+) props · (\d+) certs · (\d+) cross-checks$""") to { m: MatchResult ->
             "${m.groupValues[1]} 项属性 · ${m.groupValues[2]} 张证书 · ${m.groupValues[3]} 项交叉核验"
         },
@@ -1269,6 +1284,39 @@ object HomeChineseText {
         if (text == "The sacrificial reboot() helper died under app seccomp before it could install a temporary [ksu_driver] fd. Other KernelSU checks still ran.") {
             return "牺牲用的 reboot() 辅助进程在安装临时 [ksu_driver] 文件描述符之前被应用 seccomp 终止；其他 KernelSU 检查仍已运行。"
         }
+        Regex("""^Tracked property area, serial, and residual value checks were clean; checked (\d+) tracked property name\(s\) across (\d+) property-area context\(s\)$""")
+            .matchEntire(text)?.let {
+                return "属性区、序列号与残留值检查未发现异常；已检查 ${it.groupValues[1]} 个跟踪属性名，覆盖 ${it.groupValues[2]} 个属性区上下文。"
+            }
+        if (text.endsWith(" detected") && (" signature" in text || " signal(s)" in text)) {
+            val body = text.removeSuffix(" detected")
+            val translatedParts = body.split(" + ").joinToString(" + ") { part ->
+                when {
+                    part.endsWith(" signature") -> "${part.removeSuffix(" signature")} 特征"
+                    Regex("""^\d+ ROM signatures$""").matches(part) -> translate(part)
+                    Regex("""^\d+ modification signal\(s\)$""").matches(part) -> translate(part)
+                    Regex("""^\d+ native symbol trace\(s\)$""").matches(part) -> translate(part)
+                    else -> translate(part)
+                }
+            }
+            return "检测到 ${translatedParts}"
+        }
+        if (text.startsWith("The dedicated app_zygote carrier hit anomalous /proc/self/attr/current write outcomes while probing privileged contexts: ")) {
+            return "专用 app_zygote 载体在探测特权上下文时发现 /proc/self/attr/current 写入结果异常：" +
+                text.removePrefix("The dedicated app_zygote carrier hit anomalous /proc/self/attr/current write outcomes while probing privileged contexts: ")
+        }
+        if (text.startsWith("The dedicated app_zygote carrier observed anomalous /proc/self/attr/current writes for ")) {
+            return "专用 app_zygote 载体观察到以下上下文的 /proc/self/attr/current 写入异常：" +
+                text.removePrefix("The dedicated app_zygote carrier observed anomalous /proc/self/attr/current writes for ")
+        }
+        Regex("""^A trusted DirtySepolicy-style access query reported (.+) as allowed\.$""")
+            .matchEntire(text)?.let {
+                return "受信任的 DirtySepolicy 风格访问查询显示 ${it.groupValues[1]} 被允许。"
+            }
+        Regex("""^A trusted DirtySepolicy-style access rule was allowed: (.+)\.$""")
+            .matchEntire(text)?.let {
+                return "受信任的 DirtySepolicy 风格访问规则被允许：${it.groupValues[1]}。"
+            }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
         }
