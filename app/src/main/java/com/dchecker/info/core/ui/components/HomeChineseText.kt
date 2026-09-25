@@ -521,6 +521,18 @@ object HomeChineseText {
         "Reason" to "原因",
         "Protected" to "受保护",
 
+        "TEE details" to "TEE 详情",
+        "Structured export for debugging, sharing, and manual verification." to "用于调试、分享和人工核验的结构化导出。",
+        "Current attestation snapshot" to "当前硬件证明快照",
+        "Review the current attestation export for debugging, evidence sharing, and manual verification." to "查看当前硬件证明导出内容，可用于调试、证据分享和人工核验。",
+        "Lines" to "行数",
+        "No export available" to "暂无可用导出",
+        "Run the detector again after a full attestation pass to populate the raw TEE report." to "完成一次完整的硬件证明检测后重新运行，即可生成原始 TEE 报告。",
+        "Normalized report body" to "标准化报告正文",
+        "Optimized for inspection and copy-paste." to "已针对查看与复制粘贴进行优化。",
+        "Close" to "关闭",
+        "Android 5.0 (API 21)" to "Android 5.0（API 21）",
+
         // Shared card sections and short result values.
         "State" to "状态",
         "Security state" to "安全状态",
