@@ -228,7 +228,7 @@ class DashboardUiStateTest {
             HomeChineseText.translate("ImportKey support gate failed: origin=2"),
         )
         assertEquals(
-            "私有路径：匹配 clean",
+            "私有路径：匹配 未发现异常",
             HomeChineseText.translate("Private: matched clean"),
         )
     }
