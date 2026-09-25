@@ -210,6 +210,30 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `tee verification probe messages are localized`() {
+        assertEquals(
+            "设备未声明支持 StrongBox。",
+            HomeChineseText.translate("The device does not advertise StrongBox support."),
+        )
+        assertEquals(
+            "StrongBox 允许超过 4 个并发签名句柄。",
+            HomeChineseText.translate("StrongBox allowed more than 4 simultaneous signing handles."),
+        )
+        assertEquals(
+            "Grant 自身域私有 Binder 探针要求 Android 12 或更高版本。",
+            HomeChineseText.translate("Grant self-domain private binder probe requires Android 12 or newer."),
+        )
+        assertEquals(
+            "ImportKey 支持门槛检查失败：origin=2",
+            HomeChineseText.translate("ImportKey support gate failed: origin=2"),
+        )
+        assertEquals(
+            "私有路径：匹配 clean",
+            HomeChineseText.translate("Private: matched clean"),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
