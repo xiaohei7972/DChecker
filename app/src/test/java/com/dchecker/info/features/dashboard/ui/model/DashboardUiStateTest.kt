@@ -240,13 +240,13 @@ class DashboardUiStateTest {
             HomeChineseText.translate("Binder chain consistency probe requires Android 12 or newer."),
         )
         assertEquals(
-            "公开路径：正常（Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched.）",
+            "公开路径：正常（所有者别名与受授者 Domain.GRANT 的有序完整证书链指纹一致。）",
             HomeChineseText.translate(
                 "Public: clean (Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched.)",
             ),
         )
         assertEquals(
-            "第 2 轮 generate failed：Keystore2 服务接口不可用。",
+            "第 2 轮 生成失败：Keystore2 服务接口不可用。",
             HomeChineseText.translate("cycle2 generate failed: Keystore2 service interface was unavailable."),
         )
         assertEquals(
