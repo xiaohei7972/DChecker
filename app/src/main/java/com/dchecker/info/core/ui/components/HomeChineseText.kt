@@ -1579,6 +1579,66 @@ object HomeChineseText {
         "Google root" to "Google 根",
         "AOSP root" to "AOSP 根",
         "Factory root" to "出厂根",
+        "Native memory snapshot was unavailable." to "原生内存快照不可用。",
+        "Checks whether critical libc and linker symbols still resolve into their expected native modules." to "检查关键 libc 与链接器符号是否仍解析到预期的原生模块。",
+        "Looks for branch-heavy entry bytes and trampoline-style handoff patterns at sensitive function starts." to "检查敏感函数入口处是否存在分支密集的入口字节或 trampoline 式跳转模式。",
+        "Scans non-ART executable mappings for writable code, unexpected swapped pages, and shared-dirty system code." to "扫描非 ART 可执行映射，检查可写代码、异常换出页面和 shared-dirty 系统代码。",
+        "Cross-checks executable mappings and live file descriptors for deleted libraries, memfd loaders, ashmem, and /dev/zero execution." to "交叉检查可执行映射与活动文件描述符，查找已删除库、memfd 加载器、ashmem 和 /dev/zero 执行痕迹。",
+        "Enumerates SIGTRAP/SIGBUS/SIGSEGV/SIGILL handlers and checks whether they point into anonymous or loader-suspicious memory." to "枚举 SIGTRAP/SIGBUS/SIGSEGV/SIGILL 处理器，并检查它们是否指向匿名内存或可疑加载器内存。",
+        "Compares /proc/self/maps against dl_iterate_phdr and sanity-checks the current process [vdso] view." to "比较 /proc/self/maps 与 dl_iterate_phdr，并校验当前进程的 [vdso] 视图。",
+        "Swapped executable pages" to "已换出的可执行页面",
+        "Native mount snapshot was unavailable." to "原生挂载快照不可用。",
+        "Init namespace access" to "Init 命名空间访问",
+        "Path coverage" to "路径覆盖率",
+        "Reading /proc/1/ns/mnt is normally blocked for unprivileged apps, so namespace comparison coverage is partial." to "普通应用通常无法读取 /proc/1/ns/mnt，因此命名空间比较覆盖不完整。",
+        "Overlayfs kernel support" to "内核 Overlayfs 支持",
+        "Kernel overlayfs support exists. This only matters when combined with suspicious mount behavior." to "内核支持 Overlayfs；只有与可疑挂载行为同时出现时，这一点才有意义。",
+        "Mount-layer anomalies are strong signals because they describe how the current process actually sees filesystems, overlays, and root-managed bind mounts at runtime." to "挂载层异常属于强信号，因为它们描述了当前进程在运行时实际看到的文件系统、覆盖层以及由 Root 管理的 Bind Mount。",
+        "Magisk, Zygisk, KernelSU, or APatch-style mount artifacts can be used to present a cleaner filesystem view to selected apps while keeping root tooling active elsewhere." to "Magisk、Zygisk、KernelSU 或 APatch 类挂载痕迹可用于向特定应用呈现更干净的文件系统视图，同时在其他位置继续保持 Root 工具活动。",
+        "Writable or overlaid system partitions weaken stock verified-boot expectations and often indicate systemless or direct partition modification." to "系统分区可写或被覆盖会削弱原厂 Verified Boot 预期，通常表示存在 systemless 或直接分区修改。",
+        "Mount-info and statx contradictions are harder to explain away than a single suspicious path because different kernel-visible mount views disagree." to "Mountinfo 与 statx 结果矛盾比单个可疑路径更难解释，因为不同内核可见挂载视图彼此不一致。",
+        "The mount layer is not clean enough to ignore, but the current evidence is weaker than a direct root-managed overlay or writable-system hit." to "挂载层并非完全正常，但当前证据弱于直接命中 Root 管理的覆盖层或系统可写行为。",
+        "No suspicious mount, overlay, namespace, or root-managed filesystem artifact was visible from the current app context." to "当前应用上下文未发现可疑挂载、覆盖层、命名空间或 Root 管理的文件系统痕迹。",
+        "Permission-restricted paths and namespace boundaries can hide part of the mount picture, so combine this card with SU, TEE, kernel, and package detectors." to "受权限限制的路径和命名空间边界可能隐藏部分挂载信息，因此应结合 SU、TEE、内核和应用包检测结果一起判断。",
+        "Transparent NativeActivity launcher runs early namespace and mount checks before MainActivity starts." to "透明 NativeActivity 启动器会在 MainActivity 启动前执行早期命名空间和挂载检查。",
+        "Busybox, /data/adb, debug ramdisk payload markers, and hybrid framework path checks." to "检查 BusyBox、/data/adb、debug ramdisk 载荷标记以及混合框架路径。",
+        "Checks whether /data/local/tmp is selectively hidden or remapped compared with its parent and with /proc/self/mountinfo." to "检查 /data/local/tmp 相对父目录与 /proc/self/mountinfo 是否被选择性隐藏或重新映射。",
+        "Runtime mount table scan for Magisk paths, writable system partitions, overlays, loop devices, and dm-verity bypass patterns." to "扫描运行时挂载表中的 Magisk 路径、可写系统分区、覆盖层、Loop 设备以及 dm-verity 绕过模式。",
+        "Memory-map scan for Zygisk, Riru, and Magisk-hidden library paths." to "扫描内存映射中的 Zygisk、Riru 以及 Magisk 隐藏库路径。",
+        "Mountinfo root-field, propagation, mount-ID, and namespace-consistency checks." to "检查 Mountinfo 的 root 字段、传播关系、Mount ID 与命名空间一致性。",
+        "Overlayfs support, system filesystem type, and suspicious tmpfs sizing checks." to "检查 Overlayfs 支持、系统文件系统类型以及可疑 tmpfs 大小。",
+        "Mount-ID and mount-root cross-checks using statx where the kernel exposes those fields." to "在内核提供相关字段时，使用 statx 对 Mount ID 与挂载根进行交叉核验。",
+        "mntent strings residue" to "mntent 字符串残留",
+        "Futile hide" to "无效隐藏",
+        "ctime drift" to "ctime 偏差",
+        "Minor device gap" to "次设备号差异",
+        "Sequence drift" to "序列偏差",
+        "Peer group gap" to "Peer Group 差异",
+        "Startup gap" to "启动阶段差异",
+        "Emoji markers" to "Emoji 标记",
+        "Kernel identity contains emoji codepoints." to "内核标识中包含 Emoji 码点。",
+        "Chinese glyphs" to "中文字符",
+        "Kernel identity contains CJK characters." to "内核标识中包含 CJK 字符。",
+        "Other language scripts" to "其他语言字符",
+        "Telegram reference" to "Telegram 引用",
+        "Kernel identity references TG/Telegram style handles or channels." to "内核标识中包含 TG/Telegram 风格的用户名或频道引用。",
+        "@ mentions" to "@ 提及",
+        "Kernel identity contains maintainer-style @ mentions." to "内核标识中包含维护者风格的 @ 提及。",
+        "Custom identifiers" to "自定义标识",
+        "Known community kernel identifiers matched the kernel identity." to "内核标识命中了已知社区内核特征。",
+        "Kernel major version" to "内核主版本",
+        "Boot cmdline" to "启动命令行",
+        "Kernel pointers" to "内核指针",
+        "No kernel identity field had two readable sources, so nothing could be cross-checked." to "没有任何内核标识字段同时存在两个可读来源，因此无法进行交叉核验。",
+        "Zero Width Space" to "零宽空格",
+        "ZWC and ${otherProbes.size} tested ignorable codepoints were blocked." to "ZWC 与其他已测试的可忽略码点均被阻止。",
+        "ZWC bypassed, but the other tested ignorable codepoints did not. The result does not fit a stable patched or unpatched pattern." to "ZWC 成功绕过，但其他测试的可忽略码点未绕过；结果不符合稳定的已修复或未修复模式。",
+        "The bypass probes did not produce enough stable evidence to determine patch state." to "绕过探针未产生足够稳定的证据来判断补丁状态。",
+        "The base Android/data path is directly listable, so bypass status cannot be inferred from this probe." to "基础 Android/data 路径本身可直接列出，因此无法通过该探针推断绕过状态。",
+        "Constants found" to "发现常量",
+        "Unlocked bootloader" to "Bootloader 已解锁",
+        "PackageManager visibility is restricted on this device profile." to "当前设备配置下 PackageManager 可见性受限。",
+        "Shared external-storage baseline paths all returned EACCES/EPERM. This suggests shared user gid or related zygote storage groups may have been restricted." to "共享外部存储基线路径全部返回 EACCES/EPERM，这提示 shared user GID 或相关 Zygote 存储组可能受到限制。",
     )
 
     private val countPatterns = listOf(
@@ -2023,6 +2083,27 @@ object HomeChineseText {
         Regex("""^(.+) ok$""").matchEntire(text)?.let {
             val label = translate(it.groupValues[1])
             if (label != it.groupValues[1]) return "$label 正常"
+        }
+        Regex("""^Accessible checks: (\d+)/(\d+)\. Permission-denied checks: (\d+)\.$""").matchEntire(text)?.let {
+            return "可访问检查：${it.groupValues[1]}/${it.groupValues[2]}。权限拒绝检查：${it.groupValues[3]}。"
+        }
+        Regex("""^Kernel release major version (.+) does not match any (.+)$""").matchEntire(text)?.let {
+            return "内核发布主版本 ${it.groupValues[1]} 与任何已知 ${it.groupValues[2]} 均不匹配"
+        }
+        Regex("""^ZWC and (\d+) tested ignorable codepoints were blocked\.$""").matchEntire(text)?.let {
+            return "ZWC 与另外 ${it.groupValues[1]} 个测试的可忽略码点均被阻止。"
+        }
+        Regex("""^(.+) successfully bypassed the path filter\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])} 成功绕过路径过滤。"
+        }
+        Regex("""^(.+) was blocked by the path filter\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])} 被路径过滤阻止。"
+        }
+        Regex("""^The (.+) probe could not execute reliably\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])} 探针无法稳定执行。"
+        }
+        Regex("""^PackageManager returned only (\d+) visible packages despite a full inventory result\. This can happen under HMA-style whitelist filtering\.$""").matchEntire(text)?.let {
+            return "尽管返回的是完整清单结果，PackageManager 仍只显示 ${it.groupValues[1]} 个可见应用包；这可能发生在 HMA 类白名单过滤环境中。"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
