@@ -131,6 +131,28 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `expanded detector content is localized`() {
+        assertEquals("启动状态", HomeChineseText.translate("Boot state"))
+        assertEquals("检测方法", HomeChineseText.translate("Detection methods"))
+        assertEquals("扫描摘要", HomeChineseText.translate("Scan summary"))
+        assertEquals("运行时痕迹", HomeChineseText.translate("Runtime artifacts"))
+        assertEquals("审计完整性", HomeChineseText.translate("Audit integrity"))
+        assertEquals("TEE 详情", HomeChineseText.translate("TEE details"))
+        assertEquals(
+            "此检测器会检查符号解析、函数入口字节、可执行内存映射、可疑 memfd 或已删除库、信号处理器以及加载器可见性。",
+            HomeChineseText.translate(
+                "This detector checks symbol resolution, function entry bytes, executable mappings, suspicious memfd or deleted libraries, signal handlers, and loader visibility.",
+            ),
+        )
+        assertEquals(
+            "第三方固件可能会合理地修改构建属性、属性存储、引导加载程序状态、特权服务和默认安全设置。",
+            HomeChineseText.translate(
+                "Aftermarket firmware can legitimately alter build properties, property storage, bootloader state, privileged services, and security defaults.",
+            ),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
