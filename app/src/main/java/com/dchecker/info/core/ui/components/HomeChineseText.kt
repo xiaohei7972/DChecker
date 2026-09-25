@@ -1509,6 +1509,81 @@ object HomeChineseText {
         "Scans current-process memory maps for playintegrity/pihooks/pixelprops/keystore-related runtime traces." to "扫描当前进程内存映射，查找与 playintegrity、pihooks、pixelprops、keystore 相关的运行时痕迹。",
         "Checks PIF control, Pixel props, spoofed device identity, and security patch residue properties." to "检查 PIF 控制项、Pixel 属性、伪装设备身份和安全补丁残留属性。",
         "Flags cases where reflection, getprop, JVM, and native libc disagree for the same PIF residue property." to "标记反射、getprop、JVM 与原生 libc 对同一 PIF 残留属性返回不一致的情况。",
+        "Detected malicious-module fingerprint during timing skip." to "在跳过时序检测期间发现恶意模块指纹。",
+        "Detected malicious-module fingerprint" to "检测到恶意模块指纹",
+        "Captured private binder exception during timing skip." to "在跳过时序检测期间捕获到私有 Binder 异常。",
+        "Captured private binder exception during timing skip" to "跳过时序检测时捕获到私有 Binder 异常",
+        "Process-side indicators matched" to "进程侧指标命中",
+        "Collector" to "采集器",
+        "Issuer path" to "签发者路径",
+        "Certificate validity" to "证书有效期",
+        "RKP consistency" to "RKP 一致性",
+        "Versions" to "版本",
+        "Lifecycle" to "生命周期",
+        "Keybox" to "Keybox",
+        "TEE Simulator generate-mode fingerprint" to "TEE 模拟器 generate 模式指纹",
+        "affinity unknown" to "CPU 亲和性未知",
+        "Native probe unavailable" to "原生探针不可用",
+        "Syscall mismatch" to "系统调用不一致",
+        "Secondary DER hit" to "次级 DER 命中",
+        "Tracing active" to "跟踪活动中",
+        "GOT hook" to "GOT Hook",
+        "Inline hook" to "内联 Hook",
+        "Honeypot" to "蜜罐",
+        "TrickyStore" to "TrickyStore",
+        "Skipped because keystore2 has no certificate post-processing call site below Android 15." to "已跳过：Android 15 以下的 keystore2 不存在证书后处理调用点。",
+        "Skipped because the device did not expose a hardware-backed KeyMint tier." to "已跳过：设备未提供硬件支持的 KeyMint 安全等级。",
+        "Deep checks were skipped because hardware-backed attestation was not established." to "由于未建立硬件支持的证明，已跳过深度检查。",
+        "AES-GCM round-trip probe skipped." to "已跳过 AES-GCM 往返探针。",
+        "Lifecycle probe skipped." to "已跳过生命周期探针。",
+        "Timing probe skipped." to "已跳过时序探针。",
+        "Oversized challenge probe skipped." to "已跳过超大 Challenge 探针。",
+        "Keybox import probe skipped." to "已跳过 Keybox 导入探针。",
+        "ImportKey retained attestation narrative probe skipped." to "已跳过 ImportKey 保留证明叙述探针。",
+        "Keystore2 hook probe skipped." to "已跳过 Keystore2 Hook 探针。",
+        "Keystore2 generate-mode parcel fingerprint probe skipped." to "已跳过 Keystore2 generate 模式 Parcel 指纹探针。",
+        "Grant-domain full-chain split probe skipped." to "已跳过 Grant 域完整证书链分离探针。",
+        "Grant caller-binding private binder probe skipped." to "已跳过 Grant 调用方绑定私有 Binder 探针。",
+        "Grant access-vector private binder probe skipped." to "已跳过 Grant 访问向量私有 Binder 探针。",
+        "Grant self-domain full-chain split probe skipped." to "已跳过 Grant 自身域完整证书链分离探针。",
+        "Legacy keystore path probe skipped." to "已跳过旧版 Keystore 路径探针。",
+        "listEntries consistency probe skipped." to "已跳过 listEntries 一致性探针。",
+        "listEntriesBatched probe skipped." to "已跳过 listEntriesBatched 探针。",
+        "KeyMetadata semantics probe skipped." to "已跳过 KeyMetadata 语义探针。",
+        "KeyMetadata shape probe skipped." to "已跳过 KeyMetadata 结构探针。",
+        "Pure certificate probe skipped." to "已跳过纯证书探针。",
+        "Pure certificate security-level probe skipped." to "已跳过纯证书安全等级探针。",
+        "Operation error-path probe skipped." to "已跳过操作错误路径探针。",
+        "Biometric TEE integration probe skipped." to "已跳过生物识别 TEE 集成探针。",
+        "Binder hook bootstrap probe skipped." to "已跳过 Binder Hook 引导探针。",
+        "Binder patch-mode probe skipped." to "已跳过 Binder 补丁模式探针。",
+        "Binder chain consistency probe skipped." to "已跳过 Binder 链一致性探针。",
+        "Update subcomponent probe skipped." to "已跳过 Update subcomponent 探针。",
+        "UpdateSubcomponent stale response persistence probe skipped." to "已跳过 UpdateSubcomponent 陈旧响应持久化探针。",
+        "Pruning probe skipped." to "已跳过裁剪探针。",
+        "Dual algorithm comparison skipped." to "已跳过双算法比较。",
+        "ID attestation probe skipped." to "已跳过 ID 证明探针。",
+        "StrongBox probe skipped." to "已跳过 StrongBox 探针。",
+        "Boot consistency check unavailable because attested root of trust was missing." to "由于证明中的信任根缺失，启动一致性检查不可用。",
+        "Attested verifiedBootHash did not match ro.boot.vbmeta.digest." to "证明中的 verifiedBootHash 与 ro.boot.vbmeta.digest 不一致。",
+        "Attested verifiedBootHash was present, but ro.boot.vbmeta.digest was empty." to "证明中存在 verifiedBootHash，但 ro.boot.vbmeta.digest 为空。",
+        "Attested verifiedBootHash was all zeros." to "证明中的 verifiedBootHash 全为 0。",
+        "Attested verifiedBootKey was all zeros." to "证明中的 verifiedBootKey 全为 0。",
+        "Boot consistency check unavailable." to "启动一致性检查不可用。",
+        "setKeyEntry() failed with a key-not-found style response" to "setKeyEntry() 失败，并返回类似“密钥不存在”的响应",
+        "Domain.GRANT updateSubcomponent did not round-trip cert/chain metadata" to "Domain.GRANT updateSubcomponent 未能完整往返证书/证书链元数据",
+        "Attestation and keymaster versions violate the AOSP single-runtime mapping." to "证明版本与 keymaster 版本违反 AOSP 单运行时映射规则。",
+        "VINTF declaration did not match attested version." to "VINTF 声明与证明版本不一致。",
+        "VINTF declaration matched attested KeyMint version." to "VINTF 声明与证明中的 KeyMint 版本一致。",
+        "VINTF manifest was not fully readable." to "VINTF Manifest 无法完整读取。",
+        "No comparable KeyMint VINTF declaration was found." to "未找到可比较的 KeyMint VINTF 声明。",
+        "Attested KeyMint version was unavailable." to "证明中的 KeyMint 版本不可用。",
+        "MODULE_HASH omitted from attestation." to "证明中缺少 MODULE_HASH。",
+        "MODULE_HASH did not match supplementary attestation info." to "MODULE_HASH 与补充证明信息不一致。",
+        "MODULE_HASH present while supplementary attestation info was unavailable." to "存在 MODULE_HASH，但补充证明信息不可用。",
+        "MODULE_HASH not required by attestation version." to "当前证明版本不要求 MODULE_HASH。",
+        "MODULE_HASH matched supplementary attestation info." to "MODULE_HASH 与补充证明信息一致。",
+        "Soter check" to "Soter 检查",
     )
 
     private val countPatterns = listOf(
@@ -1797,6 +1872,40 @@ object HomeChineseText {
             if (translatedLabel != it.groupValues[1]) {
                 return "${translatedLabel}：${it.groupValues[2]}"
             }
+        }
+        Regex("""^(Matched|Mismatch|Unavailable|State only|Skipped) • (.+)$""").matchEntire(text)?.let {
+            val prefix = when (it.groupValues[1]) {
+                "Matched" -> "匹配"
+                "Mismatch" -> "不一致"
+                "Unavailable" -> "不可用"
+                "State only" -> "仅状态"
+                else -> "已跳过"
+            }
+            return "$prefix • ${translate(it.groupValues[2])}"
+        }
+        Regex("""^(Accepted|Rejected) (.+)$""").matchEntire(text)?.let {
+            return "${if (it.groupValues[1] == "Accepted") "已接受" else "已拒绝"} ${translate(it.groupValues[2])}"
+        }
+        Regex("""^failed: (.+)$""", RegexOption.IGNORE_CASE).matchEntire(text)?.let {
+            return "失败：${translate(it.groupValues[1])}"
+        }
+        Regex("""^(\d+)/(\d+) suspicious runs$""").matchEntire(text)?.let {
+            return "${it.groupValues[1]}/${it.groupValues[2]} 次可疑运行"
+        }
+        Regex("""^median gap (.+)$""").matchEntire(text)?.let {
+            return "中位差值 ${it.groupValues[1]}"
+        }
+        Regex("""^gap MAD (.+)$""").matchEntire(text)?.let {
+            return "差值 MAD ${it.groupValues[1]}"
+        }
+        Regex("""^noise floor (.+)$""").matchEntire(text)?.let {
+            return "噪声下限 ${it.groupValues[1]}"
+        }
+        Regex("""^median ratio (.+)$""").matchEntire(text)?.let {
+            return "中位比率 ${it.groupValues[1]}"
+        }
+        Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
+            return "Soter 检查：${translate(it.groupValues[1])}"
         }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
