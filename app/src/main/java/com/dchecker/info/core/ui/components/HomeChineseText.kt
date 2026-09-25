@@ -2001,14 +2001,6 @@ object HomeChineseText {
         Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
             return "Soter 检查：${translate(it.groupValues[1])}"
         }
-        Regex("""^(Public|Hidden|Private): (.+)$""").matchEntire(text)?.let {
-            val stage = when (it.groupValues[1]) {
-                "Public" -> "公开路径"
-                "Hidden" -> "隐藏路径"
-                else -> "私有路径"
-            }
-            return "$stage：${translate(it.groupValues[2])}"
-        }
         Regex("""^(Public|Hidden|Private): clean \((.+)\)$""").matchEntire(text)?.let {
             val stage = when (it.groupValues[1]) {
                 "Public" -> "公开路径"
@@ -2024,6 +2016,14 @@ object HomeChineseText {
                 else -> "私有路径"
             }
             return "$stage：匹配 ${translate(it.groupValues[2])}"
+        }
+        Regex("""^(Public|Hidden|Private): (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage：${translate(it.groupValues[2])}"
         }
         Regex("""^cycle(\d+) (.+): (.+)$""").matchEntire(text)?.let {
             return "第 ${it.groupValues[1]} 轮 ${translate(it.groupValues[2])}：${translate(it.groupValues[3])}"
