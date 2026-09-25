@@ -1584,6 +1584,41 @@ object HomeChineseText {
         "MODULE_HASH not required by attestation version." to "当前证明版本不要求 MODULE_HASH。",
         "MODULE_HASH matched supplementary attestation info." to "MODULE_HASH 与补充证明信息一致。",
         "Soter check" to "Soter 检查",
+        "Vendor API level was not required." to "无需读取 Vendor API level。",
+        "Missing ro.product.first_api_level and ro.build.version.sdk." to "缺少 ro.product.first_api_level 与 ro.build.version.sdk。",
+        "Provisioning info was present, but the chain did not terminate at a Google attestation root." to "存在 Provisioning 信息，但证书链未终止于 Google 证明根。",
+        "Provisioning info was not adjacent to the trusted attestation certificate." to "Provisioning 信息未与受信任的证明证书相邻。",
+        "The device does not advertise StrongBox support." to "设备未声明支持 StrongBox。",
+        "StrongBox accepted RSA-4096, which is atypical for current hardware-backed implementations." to "StrongBox 接受了 RSA-4096，这对当前硬件支持实现并不典型。",
+        "StrongBox signing returned in under 2 ms." to "StrongBox 签名在 2 ms 内返回。",
+        "StrongBox key generation completed in under 20 ms." to "StrongBox 密钥生成在 20 ms 内完成。",
+        "StrongBox key generation succeeded, but dedicated attestation did not expose a tier." to "StrongBox 密钥生成成功，但专用证明未返回安全等级。",
+        "Attestation claimed StrongBox, but local KeyInfo could not confirm a StrongBox key." to "证明声称为 StrongBox，但本地 KeyInfo 无法确认 StrongBox 密钥。",
+        "Timing probe could not read the generated private key." to "时序探针无法读取生成的私钥。",
+        "Timing probe failed." to "时序探针失败。",
+        "Generated key but could not read key material back for update probe." to "已生成密钥，但更新探针无法回读密钥材料。",
+        "setKeyEntry completed without an updateSubcomponent anomaly." to "setKeyEntry 已完成，未发现 updateSubcomponent 异常。",
+        "setKeyEntry failed during update probe." to "更新探针执行期间 setKeyEntry 失败。",
+        "Update subcomponent probe failed." to "Update subcomponent 探针失败。",
+        "Grant self-domain private binder probe requires Android 12 or newer." to "Grant 自身域私有 Binder 探针要求 Android 12 或更高版本。",
+        "skipped because public stage already detected danger" to "已跳过，因为公开阶段已检测到危险信号",
+        "skipped because Java grant stage already detected danger" to "已跳过，因为 Java Grant 阶段已检测到危险信号",
+        "skipped because earlier grant self-domain stage already detected danger" to "已跳过，因为更早的 Grant 自身域阶段已检测到危险信号",
+        "private getKeyEntry(APP) returned an empty certificate chain." to "私有 getKeyEntry(APP) 返回空证书链。",
+        "Private: grant did not complete." to "私有路径：Grant 未完成。",
+        "private getKeyEntry(GRANT) returned an empty certificate chain." to "私有 getKeyEntry(GRANT) 返回空证书链。",
+        "Private grant-attest: skipped for StrongBox pass." to "私有 Grant-attest：StrongBox 检查已跳过。",
+        "Private grant-attest: Keystore2 service unavailable." to "私有 Grant-attest：Keystore2 服务不可用。",
+        "Private grant-attest: PURPOSE_ATTEST_KEY generation unavailable." to "私有 Grant-attest：PURPOSE_ATTEST_KEY 生成不可用。",
+        "Private grant-attest: clean APP getKeyEntry after GRANT custom attestation; baseline APP readback ok." to "私有 Grant-attest：GRANT 自定义证明后 APP getKeyEntry 正常；基线 APP 回读正常。",
+        "Private grant-attest: APP getKeyEntry returned KEY_NOT_FOUND after GRANT custom attestation succeeded; baseline APP readback ok." to "私有 Grant-attest：GRANT 自定义证明成功后 APP getKeyEntry 返回 KEY_NOT_FOUND；基线 APP 回读正常。",
+        "ImportKey retained narrative probe requires Android 12 or newer." to "ImportKey 保留叙述探针要求 Android 12 或更高版本。",
+        "Prior attested chain was unavailable for the importKey probe alias." to "ImportKey 探针别名的先前证明证书链不可用。",
+        "Keystore2 getKeyEntry() metadata was unavailable after import." to "导入后无法获取 Keystore2 getKeyEntry() 元数据。",
+        "ImportKey retained narrative probe failed." to "ImportKey 保留叙述探针失败。",
+        "ImportKey support gate failed before retained narrative comparison." to "在保留叙述比较前，ImportKey 支持门槛检查失败。",
+        "Keystore2 getKeyEntry() returned no post-import metadata snapshots." to "Keystore2 getKeyEntry() 未返回导入后的元数据快照。",
+        "kind=NONE" to "类型=NONE",
     )
 
     private val countPatterns = listOf(
@@ -1906,6 +1941,39 @@ object HomeChineseText {
         }
         Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
             return "Soter 检查：${translate(it.groupValues[1])}"
+        }
+        Regex("""^vendor API level could not be determined\. (.+)$""").matchEntire(text)?.let {
+            return "无法确定 Vendor API level。${translate(it.groupValues[1])}"
+        }
+        Regex("""^StrongBox allowed more than (\d+) simultaneous signing handles\.$""").matchEntire(text)?.let {
+            return "StrongBox 允许超过 ${it.groupValues[1]} 个并发签名句柄。"
+        }
+        Regex("""^StrongBox key generation succeeded, but attestation tier came back as (.+)\.$""").matchEntire(text)?.let {
+            return "StrongBox 密钥生成成功，但证明安全等级返回为 ${it.groupValues[1]}。"
+        }
+        Regex("""^Keystore2 post-processing probe failed to start: (.+)$""").matchEntire(text)?.let {
+            return "Keystore2 后处理探针启动失败：${it.groupValues[1]}"
+        }
+        Regex("""^Grant self-domain full-chain split probe failed: (.+)$""").matchEntire(text)?.let {
+            return "Grant 自身域完整证书链分离探针失败：${it.groupValues[1]}"
+        }
+        Regex("""^Owner attested key generation failed: (.+)$""").matchEntire(text)?.let {
+            return "所有者证明密钥生成失败：${it.groupValues[1]}"
+        }
+        Regex("""^Private: matched (.+)$""").matchEntire(text)?.let {
+            return "私有路径：匹配 ${translate(it.groupValues[1])}"
+        }
+        Regex("""^Private: clean \((.+)\)$""").matchEntire(text)?.let {
+            return "私有路径：正常（${translate(it.groupValues[1])}）"
+        }
+        Regex("""^Private grant-attest: (.+)$""").matchEntire(text)?.let {
+            return "私有 Grant-attest：${translate(it.groupValues[1])}"
+        }
+        Regex("""^ImportKey support gate failed: (.+)$""").matchEntire(text)?.let {
+            return "ImportKey 支持门槛检查失败：${it.groupValues[1]}"
+        }
+        Regex("""^Post-import metadata did not produce an imported marker baseline or retained prior narrative: (.+)$""").matchEntire(text)?.let {
+            return "导入后元数据未生成导入标记基线或保留先前证明叙述：${it.groupValues[1]}"
         }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
