@@ -1890,6 +1890,21 @@ object HomeChineseText {
             }
             return "$stage：匹配 ${translate(it.groupValues[2])}"
         }
+        Regex("""^Private: matched (.+)$""").matchEntire(text)?.let {
+            return "私有路径：匹配 ${translate(it.groupValues[1])}"
+        }
+        Regex("""^Private: clean \((.+)\)$""").matchEntire(text)?.let {
+            return "私有路径：正常（${translate(it.groupValues[1])}）"
+        }
+        Regex("""^Private grant-attest: (.+)$""").matchEntire(text)?.let {
+            return "私有 Grant-attest：${translate(it.groupValues[1])}"
+        }
+        Regex("""^ImportKey support gate failed: (.+)$""").matchEntire(text)?.let {
+            return "ImportKey 支持门槛检查失败：${it.groupValues[1]}"
+        }
+        Regex("""^Post-import metadata did not produce an imported marker baseline or retained prior narrative: (.+)$""").matchEntire(text)?.let {
+            return "导入后元数据未生成导入标记基线或保留先前证明叙述：${it.groupValues[1]}"
+        }
         Regex("""^(Public|Hidden|Private): (.+)$""").matchEntire(text)?.let {
             val stage = when (it.groupValues[1]) {
                 "Public" -> "公开路径"
@@ -2063,21 +2078,6 @@ object HomeChineseText {
         }
         Regex("""^Owner attested key generation failed: (.+)$""").matchEntire(text)?.let {
             return "所有者证明密钥生成失败：${it.groupValues[1]}"
-        }
-        Regex("""^Private: matched (.+)$""").matchEntire(text)?.let {
-            return "私有路径：匹配 ${translate(it.groupValues[1])}"
-        }
-        Regex("""^Private: clean \((.+)\)$""").matchEntire(text)?.let {
-            return "私有路径：正常（${translate(it.groupValues[1])}）"
-        }
-        Regex("""^Private grant-attest: (.+)$""").matchEntire(text)?.let {
-            return "私有 Grant-attest：${translate(it.groupValues[1])}"
-        }
-        Regex("""^ImportKey support gate failed: (.+)$""").matchEntire(text)?.let {
-            return "ImportKey 支持门槛检查失败：${it.groupValues[1]}"
-        }
-        Regex("""^Post-import metadata did not produce an imported marker baseline or retained prior narrative: (.+)$""").matchEntire(text)?.let {
-            return "导入后元数据未生成导入标记基线或保留先前证明叙述：${it.groupValues[1]}"
         }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
