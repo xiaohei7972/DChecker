@@ -1761,6 +1761,37 @@ object HomeChineseText {
         "Request parse interrupted" to "请求解析中断",
         "Reply parse interrupted" to "回复解析中断",
         "KeyMetadata return value parse" to "KeyMetadata 返回值解析",
+        "unsupported (Android < 16)." to "不支持（Android < 16）。",
+        "unavailable (KeyStoreManager grant API missing)." to "不可用（缺少 KeyStoreManager Grant API）。",
+        "unavailable (KeyStoreManager service missing)." to "不可用（缺少 KeyStoreManager 服务）。",
+        "available." to "可用。",
+        "Keystore2 private binder proxy requires Android 12 or newer." to "Keystore2 私有 Binder 代理要求 Android 12 或更高版本。",
+        "Keystore2 service interface was not available after opening the private binder session." to "打开私有 Binder 会话后，Keystore2 服务接口不可用。",
+        "Keystore2 security level proxy was not available." to "Keystore2 安全等级代理不可用。",
+        "Keystore2 private binder proxy did not wrap both service and security-level interfaces." to "Keystore2 私有 Binder 代理未同时包装服务接口和安全等级接口。",
+        "Keystore2 private binder proxy session unavailable." to "Keystore2 私有 Binder 代理会话不可用。",
+        "generateKey completed without an observable reply payload." to "generateKey 已完成，但未观察到回复载荷。",
+        "generateKey failed before the private binder proxy captured a reply." to "私有 Binder 代理捕获回复前 generateKey 已失败。",
+        "generateKey transact completed without a reply parcel." to "generateKey transact 已完成，但没有回复 Parcel。",
+        "generateKey reply marshalling failed." to "generateKey 回复序列化失败。",
+        "generateKey reply parcel was empty." to "generateKey 回复 Parcel 为空。",
+        "private grant failed: Keystore2 private binder grant requires Android 12 or newer." to "私有 Grant 失败：Keystore2 私有 Binder Grant 要求 Android 12 或更高版本。",
+        "private ungrant failed: Keystore2 private binder grant requires Android 12 or newer." to "私有 ungrant 失败：Keystore2 私有 Binder Grant 要求 Android 12 或更高版本。",
+        "private getKeyEntry(APP) failed: Keystore2 private binder grant requires Android 12 or newer." to "私有 getKeyEntry(APP) 失败：Keystore2 私有 Binder Grant 要求 Android 12 或更高版本。",
+        "private getKeyEntry(GRANT) failed: Keystore2 private binder grant requires Android 12 or newer." to "私有 getKeyEntry(GRANT) 失败：Keystore2 私有 Binder Grant 要求 Android 12 或更高版本。",
+        "private owner replay getKeyEntry(GRANT) returned no KeyEntryResponse." to "私有所有者重放 getKeyEntry(GRANT) 未返回 KeyEntryResponse。",
+        "private owner replay getKeyEntry(GRANT) returned a response." to "私有所有者重放 getKeyEntry(GRANT) 返回了响应。",
+        "isolated binder call blocked: Keystore2 private binder grant requires Android 12 or newer." to "隔离 Binder 调用被阻止：Keystore2 私有 Binder Grant 要求 Android 12 或更高版本。",
+        "isolated binder call blocked: Domain.GRANT certificate chain was empty." to "隔离 Binder 调用被阻止：Domain.GRANT 证书链为空。",
+        "private grant failed: hidden grant() returned no descriptor." to "私有 Grant 失败：隐藏 grant() 未返回描述符。",
+        "private grant failed: hidden grant() returned invalid grant namespace." to "私有 Grant 失败：隐藏 grant() 返回无效 Grant 命名空间。",
+        "private ungrant failed: hidden ungrant() was unavailable." to "私有 ungrant 失败：隐藏 ungrant() 不可用。",
+        "Grant-domain grantee context unavailable." to "Grant 域受授者上下文不可用。",
+        "Grant-domain isolated grantee timed out." to "Grant 域隔离受授者超时。",
+        "Grant-domain isolated grantee returned a null binder." to "Grant 域隔离受授者返回空 Binder。",
+        "Grant-domain isolated grantee could not be bound." to "无法绑定 Grant 域隔离受授者。",
+        "isolated binder call blocked: owner did not pass keystore2 binder." to "隔离 Binder 调用被阻止：所有者未传递 keystore2 Binder。",
+        "isolated private binder readback blocked." to "隔离私有 Binder 回读被阻止。",
     )
 
     private val countPatterns = listOf(
@@ -2119,6 +2150,51 @@ object HomeChineseText {
         }
         Regex("""^\[!] (Request parse interrupted|Reply parse interrupted): (.+)$""").matchEntire(text)?.let {
             return "[!] ${translate(it.groupValues[1])}：${it.groupValues[2]}"
+        }
+        Regex("""^Keystore2 transact\(\) returned false for alias=(.+)$""").matchEntire(text)?.let {
+            return "Keystore2 transact() 对别名 ${it.groupValues[1]} 返回 false"
+        }
+        Regex("""^Keystore2 transact failed for alias=(.+)$""").matchEntire(text)?.let {
+            return "Keystore2 transact 对别名 ${it.groupValues[1]} 执行失败"
+        }
+        Regex("""^private (grant|ungrant|getKeyEntry\(APP\)|getKeyEntry\(GRANT\)|owner replay getKeyEntry\(GRANT\)) failed: (.+)$""").matchEntire(text)?.let {
+            return "私有 ${it.groupValues[1]} 失败：${it.groupValues[2]}"
+        }
+        Regex("""^private grant created grantId=(.+)$""").matchEntire(text)?.let {
+            return "已创建私有 Grant：grantId=${it.groupValues[1]}"
+        }
+        Regex("""^private ungrant completed uid=(.+)$""").matchEntire(text)?.let {
+            return "私有 ungrant 已完成，uid=${it.groupValues[1]}"
+        }
+        Regex("""^Grant-domain isolated grantee bound with uid=(.+)\.$""").matchEntire(text)?.let {
+            return "Grant 域隔离受授者已绑定，uid=${it.groupValues[1]}。"
+        }
+        Regex("""^Grant-domain isolated grantee handshake failed: (.+)$""").matchEntire(text)?.let {
+            return "Grant 域隔离受授者握手失败：${it.groupValues[1]}"
+        }
+        Regex("""^(Public|Hidden|Private) isolated binder call failed: (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage 隔离 Binder 调用失败：${it.groupValues[2]}"
+        }
+        Regex("""^(Public|Hidden|Private) isolated readback chainLength=(.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage 隔离回读证书链长度=${it.groupValues[2]}"
+        }
+        Regex("""^(Public|Hidden|Private) isolated readback failed: (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage 隔离回读失败：${it.groupValues[2]}"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
