@@ -234,6 +234,30 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `tee keystore probe and multiline export details are localized`() {
+        assertEquals(
+            "Binder 链一致性探针要求 Android 12 或更高版本。",
+            HomeChineseText.translate("Binder chain consistency probe requires Android 12 or newer."),
+        )
+        assertEquals(
+            "公开路径：正常（Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched.）",
+            HomeChineseText.translate(
+                "Public: clean (Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched.)",
+            ),
+        )
+        assertEquals(
+            "第 2 轮 generate failed：Keystore2 服务接口不可用。",
+            HomeChineseText.translate("cycle2 generate failed: Keystore2 service interface was unavailable."),
+        )
+        assertEquals(
+            "启动一致性检查不可用。\nro.boot.vbmeta.digest\n设备未声明支持 StrongBox。",
+            HomeChineseText.translate(
+                "Boot consistency check unavailable.\nro.boot.vbmeta.digest\nThe device does not advertise StrongBox support.",
+            ),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
