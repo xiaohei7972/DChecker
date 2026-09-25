@@ -518,6 +518,9 @@ object HomeChineseText {
         "Soter" to "Soter",
         "Indicators" to "指标",
 
+        "Reason" to "原因",
+        "Protected" to "受保护",
+
         // Shared card sections and short result values.
         "State" to "状态",
         "Security state" to "安全状态",
