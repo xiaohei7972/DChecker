@@ -258,6 +258,27 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `tee reducer summaries and multiline raw details are localized`() {
+        assertEquals(
+            "运行时与证明中的补丁级别在本机一致。",
+            HomeChineseText.translate("Runtime and attested patch levels line up locally."),
+        )
+        assertEquals("3 项不一致", HomeChineseText.translate("3 mismatch(es)"))
+        assertEquals(
+            "CRL 刷新超时。\nro.boot.vbmeta.digest\nHook 已安装",
+            HomeChineseText.translate(
+                "CRL refresh timed out.\nro.boot.vbmeta.digest\nHook installed",
+            ),
+        )
+        assertEquals(
+            "可能原因：厂商 Binder/libc 兼容性差异。未发现更强的 Hook 指纹。",
+            HomeChineseText.translate(
+                "Possible cause: vendor binder/libc compatibility differences. No stronger hook fingerprint was found.",
+            ),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
