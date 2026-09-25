@@ -795,6 +795,7 @@ object HomeChineseText {
         "Property hits" to "属性命中",
         "Native prop hits" to "原生属性命中",
         "Native traces" to "原生痕迹",
+        "Bridge" to "桥接",
         // Shared card sections and short result values.
         "State" to "状态",
         "Security state" to "安全状态",
