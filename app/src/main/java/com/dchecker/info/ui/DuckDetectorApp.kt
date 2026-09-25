@@ -441,6 +441,8 @@ private fun AppReadyShell(
     canShowUpdateDialog: Boolean,
 ) {
     val context = LocalContext.current
+    val locale = LocalConfiguration.current.locales[0]
+    val homeChinese = locale.language == "zh" && locale.country !in setOf("TW", "HK", "MO")
     val appContext = context.applicationContext
     val updateOpenFailedMessage = stringResource(R.string.update_open_failed)
     val scope = rememberCoroutineScope()
