@@ -1631,7 +1631,6 @@ object HomeChineseText {
         "Kernel pointers" to "内核指针",
         "No kernel identity field had two readable sources, so nothing could be cross-checked." to "没有任何内核标识字段同时存在两个可读来源，因此无法进行交叉核验。",
         "Zero Width Space" to "零宽空格",
-        "ZWC and ${otherProbes.size} tested ignorable codepoints were blocked." to "ZWC 与其他已测试的可忽略码点均被阻止。",
         "ZWC bypassed, but the other tested ignorable codepoints did not. The result does not fit a stable patched or unpatched pattern." to "ZWC 成功绕过，但其他测试的可忽略码点未绕过；结果不符合稳定的已修复或未修复模式。",
         "The bypass probes did not produce enough stable evidence to determine patch state." to "绕过探针未产生足够稳定的证据来判断补丁状态。",
         "The base Android/data path is directly listable, so bypass status cannot be inferred from this probe." to "基础 Android/data 路径本身可直接列出，因此无法通过该探针推断绕过状态。",
