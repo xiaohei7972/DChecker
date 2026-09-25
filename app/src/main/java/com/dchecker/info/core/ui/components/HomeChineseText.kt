@@ -1619,6 +1619,99 @@ object HomeChineseText {
         "ImportKey support gate failed before retained narrative comparison." to "在保留叙述比较前，ImportKey 支持门槛检查失败。",
         "Keystore2 getKeyEntry() returned no post-import metadata snapshots." to "Keystore2 getKeyEntry() 未返回导入后的元数据快照。",
         "kind=NONE" to "类型=NONE",
+        "Grant-domain private binder probe requires Android 12 or newer." to "Grant 域私有 Binder 探针要求 Android 12 或更高版本。",
+        "Private: isolated grantee unavailable." to "私有路径：隔离受授者不可用。",
+        "isolated binder call blocked: owner keystore2 binder unavailable." to "隔离 Binder 调用被阻止：所有者 keystore2 Binder 不可用。",
+        "Private: Domain.GRANT certificate chain empty." to "私有路径：Domain.GRANT 证书链为空。",
+        "Owner alias and grantee Domain.GRANT ordered full-chain fingerprints matched." to "所有者别名与受授者 Domain.GRANT 的有序完整证书链指纹一致。",
+        "Binder chain consistency probe requires Android 12 or newer." to "Binder 链一致性探针要求 Android 12 或更高版本。",
+        "Binder capture hook bootstrap failed." to "Binder 捕获 Hook 引导失败。",
+        "AndroidKeyStore returned no private key for the probe alias." to "AndroidKeyStore 未为探针别名返回私钥。",
+        "Java KeyStore returned no certificate chain for the probe alias." to "Java KeyStore 未为探针别名返回证书链。",
+        "Keystore2 service interface was unavailable." to "Keystore2 服务接口不可用。",
+        "Keystore2 getKeyEntry() returned null for the probe alias." to "Keystore2 getKeyEntry() 对探针别名返回 null。",
+        "Neither getKeyEntry nor generateKey exposed certificate material for the probe alias." to "getKeyEntry 与 generateKey 均未为探针别名暴露证书材料。",
+        "Binder hook bootstrap probe requires Android 12 or newer." to "Binder Hook 引导探针要求 Android 12 或更高版本。",
+        "Binder hook bootstrap probe failed." to "Binder Hook 引导探针失败。",
+        "Binder patch-mode probe requires Android 12 or newer." to "Binder 补丁模式探针要求 Android 12 或更高版本。",
+        "Binder capture hook bootstrap failed before patch-mode probe." to "在补丁模式探针运行前，Binder 捕获 Hook 引导失败。",
+        "Binder patch-mode probe failed." to "Binder 补丁模式探针失败。",
+        "KeyMetadata semantics probe requires Android 12 or newer." to "KeyMetadata 语义探针要求 Android 12 或更高版本。",
+        "KeyMetadata did not expose a returned key descriptor." to "KeyMetadata 未暴露返回的密钥描述符。",
+        "KeyMetadata semantics probe could not complete." to "KeyMetadata 语义探针未能完成。",
+        "KeyMetadata shape probe requires Android 12 or newer." to "KeyMetadata 结构探针要求 Android 12 或更高版本。",
+        "Keystore2 response did not contain metadata." to "Keystore2 响应中不包含元数据。",
+        "KeyMetadata shape probe could not complete." to "KeyMetadata 结构探针未能完成。",
+        "Keybox import probe requires Android 12 or newer." to "Keybox 导入探针要求 Android 12 或更高版本。",
+        "PURPOSE_ATTEST_KEY could not be provisioned for the probe alias." to "无法为探针别名配置 PURPOSE_ATTEST_KEY。",
+        "Probe alias returned no certificate after setEntry()." to "探针别名在 setEntry() 后未返回证书。",
+        "Keybox import probe failed." to "Keybox 导入探针失败。",
+        "Operation error-path probe requires Android 12 or newer." to "操作错误路径探针要求 Android 12 或更高版本。",
+        "Keystore2 returned a non-KEY_ID descriptor without namespace information." to "Keystore2 返回了非 KEY_ID 描述符，且缺少命名空间信息。",
+        "IKeystoreSecurityLevel binder was unavailable." to "IKeystoreSecurityLevel Binder 不可用。",
+        "createOperation failed for both minimal and compatibility params." to "createOperation 在最小参数与兼容参数下均失败。",
+        "Operation error-path probe failed." to "操作错误路径探针失败。",
+        "Failed to create temporary certificate for pure certificate probe." to "无法为纯证书探针创建临时证书。",
+        "Pure certificate probe failed." to "纯证书探针失败。",
+        "Pure certificate security-level probe requires Android 12 or newer." to "纯证书安全等级探针要求 Android 12 或更高版本。",
+        "Failed to create temporary certificate for pure certificate security-level probe." to "无法为纯证书安全等级探针创建临时证书。",
+        "Keystore2 getKeyEntry() returned null for the certificate-only entry." to "Keystore2 getKeyEntry() 对纯证书条目返回 null。",
+        "Pure certificate security-level probe could not complete." to "纯证书安全等级探针未能完成。",
+        "Could not read private key for pruning probe." to "无法读取裁剪探针所需的私钥。",
+        "Operation pruning probe failed." to "操作裁剪探针失败。",
+        "listEntries consistency probe requires Android 12 or newer." to "listEntries 一致性探针要求 Android 12 或更高版本。",
+        "listEntries consistency probe could not complete." to "listEntries 一致性探针未能完成。",
+        "listEntriesBatched probe requires Android 14 or newer." to "listEntriesBatched 探针要求 Android 14 或更高版本。",
+        "listEntriesBatched probe could not complete" to "listEntriesBatched 探针未能完成",
+        "Key lifecycle probe failed." to "密钥生命周期探针失败。",
+        "Missing private key or certificate after key generation." to "密钥生成后缺少私钥或证书。",
+        "Key pair consistency probe failed." to "密钥对一致性探针失败。",
+        "Grant updateSubcomponent requires Android 12 or newer." to "Grant updateSubcomponent 要求 Android 12 或更高版本。",
+        "Grant updateSubcomponent skipped: Keystore2 service unavailable." to "Grant updateSubcomponent 已跳过：Keystore2 服务不可用。",
+        "Grant updateSubcomponent readback returned no KeyEntryResponse." to "Grant updateSubcomponent 回读未返回 KeyEntryResponse。",
+        "Grant updateSubcomponent APP readback returned no KeyEntryResponse." to "Grant updateSubcomponent 的 APP 回读未返回 KeyEntryResponse。",
+        "HMAC-SHA256 generation failed." to "HMAC-SHA256 生成失败。",
+        "Single-use EC requires Android 12 or newer." to "单次使用 EC 要求 Android 12 或更高版本。",
+        "Single-use EC generation failed." to "单次使用 EC 生成失败。",
+        "ECDH requires Android 12 or newer." to "ECDH 要求 Android 12 或更高版本。",
+        "ECDH P-256 key agreement failed." to "ECDH P-256 密钥协商失败。",
+        "RSA-PSS SHA-256 signing failed." to "RSA-PSS SHA-256 签名失败。",
+        "RSA PKCS#1 encryption unavailable." to "RSA PKCS#1 加密不可用。",
+        "RSA-OAEP SHA-1 encryption unavailable." to "RSA-OAEP SHA-1 加密不可用。",
+        "RSA-OAEP MGF1 digest probe requires a native KeyMint 1+ backend." to "RSA-OAEP MGF1 摘要探针要求原生 KeyMint 1+ 后端。",
+        "RSA-OAEP MGF1 authorization probe requires a native KeyMint 1+ backend." to "RSA-OAEP MGF1 授权探针要求原生 KeyMint 1+ 后端。",
+        "RSA-OAEP SHA-256 encryption unavailable." to "RSA-OAEP SHA-256 加密不可用。",
+        "RSA-OAEP SHA-256 round-trip failed." to "RSA-OAEP SHA-256 往返测试失败。",
+        "RSA-OAEP SHA-1 rejection probe failed." to "RSA-OAEP SHA-1 拒绝探针失败。",
+        "EC NONE digest probe failed." to "EC NONE 摘要探针失败。",
+        "RSA PKCS#1 SHA-1 probe failed." to "RSA PKCS#1 SHA-1 探针失败。",
+        "RSA PKCS#1/PSS probe failed." to "RSA PKCS#1/PSS 探针失败。",
+        "HMAC-SHA256 skipped." to "HMAC-SHA256 已跳过。",
+        "Single-use EC skipped." to "单次使用 EC 已跳过。",
+        "ECDH P-256 skipped." to "ECDH P-256 已跳过。",
+        "RSA-PSS SHA-256 skipped." to "RSA-PSS SHA-256 已跳过。",
+        "AES-CBC CTR authorization skipped." to "AES-CBC CTR 授权已跳过。",
+        "AES-CBC NoPadding authorization skipped." to "AES-CBC NoPadding 授权已跳过。",
+        "EC SHA-512 authorization skipped." to "EC SHA-512 授权已跳过。",
+        "RSA-PSS SHA-512 authorization skipped." to "RSA-PSS SHA-512 授权已跳过。",
+        "RSA-PSS PKCS#1 authorization skipped." to "RSA-PSS PKCS#1 授权已跳过。",
+        "RSA-OAEP PKCS#1 authorization skipped." to "RSA-OAEP PKCS#1 授权已跳过。",
+        "RSA-PKCS#1 OAEP authorization skipped." to "RSA-PKCS#1 OAEP 授权已跳过。",
+        "RSA-OAEP MGF1 skipped." to "RSA-OAEP MGF1 已跳过。",
+        "RSA-OAEP MGF1 SHA-1 authorization skipped." to "RSA-OAEP MGF1 SHA-1 授权已跳过。",
+        "RSA-OAEP SHA-256 skipped." to "RSA-OAEP SHA-256 已跳过。",
+        "RSA-OAEP SHA-1 authorization skipped." to "RSA-OAEP SHA-1 授权已跳过。",
+        "EC NONE digest authorization skipped." to "EC NONE 摘要授权已跳过。",
+        "RSA PKCS#1 SHA-1 authorization skipped." to "RSA PKCS#1 SHA-1 授权已跳过。",
+        "RSA PKCS#1/PSS authorization skipped." to "RSA PKCS#1/PSS 授权已跳过。",
+        "Grant updateSubcomponent skipped." to "Grant updateSubcomponent 已跳过。",
+        "RSA-OAEP MGF1 skipped because runtime identity signals conflict." to "由于运行时身份信号冲突，RSA-OAEP MGF1 已跳过。",
+        "RSA-OAEP MGF1 skipped for legacy Keymaster/km_compat." to "旧版 Keymaster/km_compat 环境下已跳过 RSA-OAEP MGF1。",
+        "RSA-OAEP MGF1 skipped because the backend family could not be established." to "由于无法确定后端系列，RSA-OAEP MGF1 已跳过。",
+        "KeyMint 1/2 uses raw keystore2 operation checks; characteristics are not required by VTS." to "KeyMint 1/2 使用原始 keystore2 操作检查；VTS 不要求 characteristics。",
+        "Generated key characteristics omit RSA_OAEP_MGF_DIGEST on KeyMint 3+." to "KeyMint 3+ 生成的密钥 characteristics 缺少 RSA_OAEP_MGF_DIGEST。",
+        "RSA_OAEP_MGF_DIGEST was not enforced by the selected hardware security level." to "所选硬件安全等级未强制执行 RSA_OAEP_MGF_DIGEST。",
+        "Generated key characteristics exactly match hardware-enforced MGF1 SHA-256." to "生成密钥的 characteristics 与硬件强制的 MGF1 SHA-256 完全一致。",
     )
 
     private val countPatterns = listOf(
@@ -1730,6 +1823,9 @@ object HomeChineseText {
     )
 
     fun translate(text: String): String {
+        if ('\n' in text) {
+            return text.split('\n').joinToString("\n") { line -> translate(line) }
+        }
         exact[text]?.let { return it }
         Regex("""^Local trust path: (.+), chain (verified|failed)(.*)$""").matchEntire(text)?.let {
             val chain = if (it.groupValues[2] == "verified") "已验证" else "验证失败"
@@ -1904,6 +2000,43 @@ object HomeChineseText {
         }
         Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
             return "Soter 检查：${translate(it.groupValues[1])}"
+        }
+        Regex("""^(Public|Hidden|Private): (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage：${translate(it.groupValues[2])}"
+        }
+        Regex("""^(Public|Hidden|Private): clean \((.+)\)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage：正常（${translate(it.groupValues[2])}）"
+        }
+        Regex("""^(Public|Hidden|Private): matched (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "$stage：匹配 ${translate(it.groupValues[2])}"
+        }
+        Regex("""^cycle(\d+) (.+): (.+)$""").matchEntire(text)?.let {
+            return "第 ${it.groupValues[1]} 轮 ${translate(it.groupValues[2])}：${translate(it.groupValues[3])}"
+        }
+        Regex("""^Grant updateSubcomponent skipped: (.+)$""").matchEntire(text)?.let {
+            return "Grant updateSubcomponent 已跳过：${translate(it.groupValues[1])}"
+        }
+        Regex("""^Grant updateSubcomponent failed after grant: (.+)$""").matchEntire(text)?.let {
+            return "Grant 后 updateSubcomponent 失败：${it.groupValues[1]}"
+        }
+        Regex("""^(.+) failed: (.+)$""").matchEntire(text)?.let {
+            val lhs = translate(it.groupValues[1])
+            return "$lhs 失败：${it.groupValues[2]}"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
