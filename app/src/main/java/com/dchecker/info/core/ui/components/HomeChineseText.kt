@@ -878,7 +878,7 @@ object HomeChineseText {
         "Certificates" to "证书",
         "Certificate chain" to "证书链",
         "Network" to "网络",
-        "Scan summary" to "扫描汇总",
+        "Scan summary" to "扫描摘要",
         "Device profile unavailable" to "设备资料不可用",
         "Unknown error" to "未知错误",
         "No findings were produced for this section." to "本节未发现可显示的结果。",
