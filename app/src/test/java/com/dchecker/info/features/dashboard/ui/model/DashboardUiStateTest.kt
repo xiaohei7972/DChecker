@@ -75,6 +75,40 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `home translates remaining detector card copy`() {
+        assertEquals(
+            "检测到 HMA 类隐藏行为",
+            HomeChineseText.translate("HMA-style concealment detected"),
+        )
+        assertEquals(
+            "正在收集类、ClassLoader、Binder、运行时痕迹、logcat、应用包、SELinux 策略和原生运行时证据。",
+            HomeChineseText.translate(
+                "Gathering class, ClassLoader, Binder, runtime-artifact, logcat, package, SELinux policy, and native runtime evidence.",
+            ),
+        )
+        assertEquals(
+            "强制模式，发现异常 sepolicy 规则",
+            HomeChineseText.translate("Enforcing with dirty sepolicy rule"),
+        )
+        assertEquals(
+            "系统属性检测覆盖受限",
+            HomeChineseText.translate("System property scan has reduced coverage"),
+        )
+        assertEquals(
+            "跨进程辅助器",
+            HomeChineseText.translate("Cross-process helper"),
+        )
+        assertEquals(
+            "辅助",
+            HomeChineseText.translate("Support"),
+        )
+        assertEquals(
+            "/proc/self/attr/current",
+            HomeChineseText.translate("/proc/self/attr/current"),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
