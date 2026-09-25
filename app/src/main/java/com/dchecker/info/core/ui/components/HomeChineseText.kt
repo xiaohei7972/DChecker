@@ -1902,6 +1902,9 @@ object HomeChineseText {
                 return "${translatedLabel}（${it.groupValues[2]}）"
             }
         }
+        Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
+            return "Soter 检查：${translate(it.groupValues[1])}"
+        }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
             if (translatedLabel != it.groupValues[1]) {
@@ -1938,9 +1941,6 @@ object HomeChineseText {
         }
         Regex("""^median ratio (.+)$""").matchEntire(text)?.let {
             return "中位比率 ${it.groupValues[1]}"
-        }
-        Regex("""^Soter check: (.+)$""").matchEntire(text)?.let {
-            return "Soter 检查：${translate(it.groupValues[1])}"
         }
         Regex("""^vendor API level could not be determined\. (.+)$""").matchEntire(text)?.let {
             return "无法确定 Vendor API level。${translate(it.groupValues[1])}"
