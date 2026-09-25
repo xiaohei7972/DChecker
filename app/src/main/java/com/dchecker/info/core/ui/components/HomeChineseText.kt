@@ -1680,6 +1680,19 @@ object HomeChineseText {
         "Auxiliary DRM signal" to "辅助 DRM 信号",
         "Cross-API mismatch" to "跨 API 不一致",
         "Java/native disagreement can indicate a MediaDrm hook, spoof, or vendor framework inconsistency." to "Java/原生结果不一致可能表示存在 MediaDrm Hook、伪装或厂商框架不一致。",
+        "SU found" to "发现 SU",
+        "FD trap was skipped because the app process is running under a debugger or Android Studio startup agent, which distorts specialization behavior and has been unstable on this device." to "由于应用进程正运行在调试器或 Android Studio 启动代理下，FD 陷阱已跳过；该环境会干扰进程特化行为，并且在此设备上表现不稳定。",
+        "Collects linker, namespace, maps, smaps, stack, thread, fd, seccomp, and heap traces from the current app process." to "从当前应用进程收集链接器、命名空间、maps、smaps、栈、线程、FD、seccomp 与堆痕迹。",
+        "Runs a thread-local seccomp trap around pthread_attr_setstacksize to catch syscall-emitting libc hooks used by self-unloading Zygisk variants." to "围绕 pthread_attr_setstacksize 运行线程级 seccomp 陷阱，用于捕获自卸载型 Zygisk 变体中会触发系统调用的 libc Hook。",
+        "Checks whether linker entry points still belong to the expected loader and whether restricted-path libraries appear in the current process." to "检查链接器入口点是否仍属于预期加载器，并检查受限路径库是否出现在当前进程中。",
+        "Looks for suspicious executable mappings, deleted loaders, JIT drift, and dirty system library pages." to "检查可疑可执行映射、已删除加载器、JIT 偏差以及脏系统库页面。",
+        "Correlates TracerPid, suspicious thread names, and open descriptor targets that frequently survive runtime tampering stacks." to "关联 TracerPid、可疑线程名和打开的描述符目标，这些痕迹常会在运行时篡改框架中残留。",
+        "Uses weaker corroboration probes for module unload drift, atexit routing, residual stack strings, and jemalloc free-kept entropy." to "使用较弱的佐证探针检查模块卸载偏差、atexit 路由、残留栈字符串以及 jemalloc free-kept 熵。",
+        "Closed during specialization" to "在进程特化期间关闭",
+        "Trap signature mismatch" to "陷阱特征不一致",
+        "Descriptor state drift" to "描述符状态偏差",
+        "Procfs anomaly" to "Procfs 异常",
+        "Corruption" to "状态损坏",
     )
 
     private val countPatterns = listOf(
@@ -2160,6 +2173,12 @@ object HomeChineseText {
         }
         Regex("""^One or more vendor properties were unavailable on either the Java or NDK path\.(.*)$""").matchEntire(text)?.let {
             return "Java 或 NDK 路径中有一个或多个厂商属性不可用。${it.groupValues[1]}"
+        }
+        Regex("""^Scene debugfs context: (.+)$""").matchEntire(text)?.let {
+            return "Scene debugfs 上下文：${it.groupValues[1]}"
+        }
+        Regex("""^127\.0\.0\.1:(\d+) invalid payload closed immediately$""").matchEntire(text)?.let {
+            return "127.0.0.1:${it.groupValues[1]} 收到无效载荷后立即关闭连接"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
