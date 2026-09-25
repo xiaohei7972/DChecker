@@ -479,6 +479,7 @@ object HomeChineseText {
         "Critical" to "严重",
         "Review" to "待核查",
         "Clean" to "未发现异常",
+        "clean" to "未发现异常",
         "All clear" to "未发现异常",
         "Failed" to "失败",
         "Error" to "错误",
