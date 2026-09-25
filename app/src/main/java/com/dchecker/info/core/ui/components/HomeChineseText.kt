@@ -479,6 +479,12 @@ object HomeChineseText {
         "Critical" to "严重",
         "Review" to "待核查",
         "Clean" to "未发现异常",
+        "presence" to "用户在场",
+        "confirmation" to "确认",
+        "unknown" to "未知",
+        "skipped" to "已跳过",
+        "ratio unavailable" to "比率不可用",
+        "reason unavailable" to "原因不可用",
         "clean" to "未发现异常",
         "All clear" to "未发现异常",
         "Failed" to "失败",
@@ -2234,6 +2240,58 @@ object HomeChineseText {
         }
         Regex("""^Owner attested key generation failed: (.+)$""").matchEntire(text)?.let {
             return "所有者证明密钥生成失败：${it.groupValues[1]}"
+        }
+        Regex("""^attest (.+) • keymaster (.+) • Android (.+)$""").matchEntire(text)?.let {
+            return "证明版本 ${it.groupValues[1]} • Keymaster ${it.groupValues[2]} • Android ${it.groupValues[3]}"
+        }
+        Regex("""^runtime (.+) • attest (.+?)(?: • vendor (.+) • boot (.+))?$""").matchEntire(text)?.let {
+            return buildString {
+                append("运行时补丁 ")
+                append(it.groupValues[1])
+                append(" • 证明补丁 ")
+                append(it.groupValues[2])
+                if (it.groupValues[3].isNotEmpty()) {
+                    append(" • 厂商补丁 ")
+                    append(it.groupValues[3])
+                    append(" • 启动补丁 ")
+                    append(it.groupValues[4])
+                }
+            }
+        }
+        Regex("""^len (\d+) • ext (\d+) • trusted (.+)$""").matchEntire(text)?.let {
+            return "链长 ${it.groupValues[1]} • 证明扩展 ${it.groupValues[2]} • 受信任证书 ${it.groupValues[3]}"
+        }
+        Regex("""^(.+?) • (.+?) • attested (.+?) • non-attested (.+?) • diff (.+?) • ratio (.+?) • threshold > (.+)$""")
+            .matchEntire(text)?.let {
+                val tail = it.groupValues[7]
+                    .replace("failedPairs=", "失败配对=")
+                    .replace("outlierFiltered=", "已过滤异常值=")
+                    .replace("samples=", "样本=")
+                    .replace("reason ", "原因 ")
+                return "${translate(it.groupValues[1])} • ${translate(it.groupValues[2])} • 已证明 ${it.groupValues[3]} • 未证明 ${it.groupValues[4]} • 差值 ${it.groupValues[5]} • 比率 ${it.groupValues[6]} • 阈值 > $tail"
+            }
+        Regex("""^(.+) timing side-channel could not finish measurement; (.+)\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}时序旁路未能完成测量；${translate(it.groupValues[2])}。"
+        }
+        Regex("""^(.+) timing side-channel skipped ratio; (.+)\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}时序旁路已跳过比率计算；${it.groupValues[2]}。"
+        }
+        Regex("""^(.+) timing side-channel stayed supplementary; ratio (.+) exceeded (.+)\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}时序旁路仍作为辅助证据；比率 ${it.groupValues[2]} 超过阈值 ${it.groupValues[3]}。"
+        }
+        Regex("""^(.+) timing side-channel stayed supplementary; ratio (.+) stayed within (.+)\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}时序旁路仍作为辅助证据；比率 ${it.groupValues[2]} 位于阈值 ${it.groupValues[3]} 内。"
+        }
+        Regex("""^(.+) timing side-channel stayed supplementary; ratio unavailable\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}时序旁路仍作为辅助证据；比率不可用。"
+        }
+        Regex("""^(Matched|Clean|Unavailable) kind=(.+)$""").matchEntire(text)?.let {
+            val prefix = when (it.groupValues[1]) {
+                "Matched" -> "匹配"
+                "Clean" -> "未发现异常"
+                else -> "不可用"
+            }
+            return "$prefix 类型=${it.groupValues[2]}"
         }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
