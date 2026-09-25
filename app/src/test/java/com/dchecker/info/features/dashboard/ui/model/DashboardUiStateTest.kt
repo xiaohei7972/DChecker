@@ -279,6 +279,28 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `remaining non tee detector details are localized`() {
+        assertEquals(
+            "普通应用通常无法读取 /proc/1/ns/mnt，因此命名空间比较覆盖不完整。",
+            HomeChineseText.translate(
+                "Reading /proc/1/ns/mnt is normally blocked for unprivileged apps, so namespace comparison coverage is partial.",
+            ),
+        )
+        assertEquals(
+            "内核标识中包含 Emoji 码点。",
+            HomeChineseText.translate("Kernel identity contains emoji codepoints."),
+        )
+        assertEquals(
+            "ZWC 与另外 3 个测试的可忽略码点均被阻止。",
+            HomeChineseText.translate("ZWC and 3 tested ignorable codepoints were blocked."),
+        )
+        assertEquals(
+            "当前设备配置下 PackageManager 可见性受限。",
+            HomeChineseText.translate("PackageManager visibility is restricted on this device profile."),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
