@@ -35,4 +35,6 @@ limitations under the License.
     <string name="card_action_view_details">View details</string>
     <string name="card_action_review_evidence">Review evidence</string>
     <string name="card_action_certificate_chain">Certificate chain</string>
+    <string name="dashboard_report_saved">Report saved</string>
+    <string name="dashboard_report_save_failed">Save failed: %1$s</string>
 </resources>

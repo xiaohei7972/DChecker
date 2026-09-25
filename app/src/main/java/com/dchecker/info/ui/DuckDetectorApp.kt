@@ -42,6 +42,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -158,6 +159,9 @@ fun DuckDetectorApp() {
     }
 
     val context = LocalContext.current
+    val currentLocale = LocalConfiguration.current.locales[0]
+    val homeChinese = currentLocale.language == "zh" &&
+        currentLocale.country !in setOf("TW", "HK", "MO")
     val appContext = context.applicationContext
     val agreementStore = remember(appContext) { AgreementAcceptanceStore.getInstance(appContext) }
     val consentStore = remember(appContext) { TeeNetworkConsentStore.getInstance(appContext) }
@@ -560,6 +564,7 @@ private fun AppReadyShell(
     val dashboardScanCompletedAtEpochMillis = dashboardScanCompletedAtEpoch
 
     val dashboardState = remember(
+        homeChinese,
         contributions,
         dashboardScanDurationMillis,
         dashboardScanCompletedAtEpochMillis,
@@ -586,8 +591,9 @@ private fun AppReadyShell(
                 contributions = contributions,
                 scanDurationMillis = dashboardScanDurationMillis,
                 scanCompletedAtEpochMillis = dashboardScanCompletedAtEpochMillis,
+                chinese = homeChinese,
             ),
-            topFindings = buildDashboardFindings(contributions),
+            topFindings = buildDashboardFindings(contributions, chinese = homeChinese),
             detectorCards = sortDashboardDetectorCards(
                 listOf(
                     DashboardDetectorCardEntry.Bootloader(bootloaderUiState.cardModel),

@@ -19,6 +19,7 @@ package com.dchecker.info.features.dashboard.ui.model
 import com.dchecker.info.core.ui.model.DetectionSeverity
 import com.dchecker.info.core.ui.model.DetectorStatus
 import com.dchecker.info.core.ui.model.InfoKind
+import com.dchecker.info.core.ui.components.HomeChineseText
 import com.dchecker.info.features.bootloader.ui.model.BootloaderCardModel
 import com.dchecker.info.features.customrom.ui.model.CustomRomCardModel
 import com.dchecker.info.features.deviceinfo.ui.model.DeviceInfoCardModel
@@ -196,6 +197,7 @@ fun buildDashboardOverview(
     contributions: List<DashboardDetectorContribution>,
     scanDurationMillis: Long? = null,
     scanCompletedAtEpochMillis: Long? = null,
+    chinese: Boolean = false,
 ): DashboardOverviewModel {
     val total = contributions.size
     val readyCount = contributions.count { it.ready }
@@ -208,7 +210,7 @@ fun buildDashboardOverview(
 
     val focusTitles = prioritizedContributions(contributions)
         .take(2)
-        .map { it.title }
+        .map { if (chinese) HomeChineseText.translate(it.title) else it.title }
 
     val overviewStatus = when {
         dangerCount > 0 -> DetectorStatus.danger()
@@ -219,53 +221,69 @@ fun buildDashboardOverview(
         else -> DetectorStatus.allClear()
     }
 
+    val focus = focusTitles.joinToString(separator = if (chinese) "和" else " and ")
     val headline = when {
-        dangerCount > 0 -> "Danger"
-        warningCount > 0 -> "Warning"
-        infoErrorCount > 0 -> "Info"
-        readyCount == 0 -> "Ready"
-        pendingCount > 0 -> "Pending"
-        else -> "OK"
+        dangerCount > 0 -> if (chinese) "危险" else "Danger"
+        warningCount > 0 -> if (chinese) "警告" else "Warning"
+        infoErrorCount > 0 -> if (chinese) "信息" else "Info"
+        readyCount == 0 -> if (chinese) "准备中" else "Ready"
+        pendingCount > 0 -> if (chinese) "等待中" else "Pending"
+        else -> if (chinese) "正常" else "OK"
     }
 
-    val summary = when {
-        dangerCount > 0 -> "Start with ${focusTitles.joinToString(separator = " and ")}."
-        warningCount > 0 -> "Review ${focusTitles.joinToString(separator = " and ")} next."
-        infoErrorCount > 0 -> "${focusTitles.joinToString(separator = " and ")} need more context before treating results as clean."
-        readyCount == 0 -> "Detector cards will populate as local checks complete."
-        pendingCount > 0 -> "Additional modules are still collecting their local evidence."
-        else -> "Use the detector cards below to inspect local evidence in detail."
+    val summary = if (chinese) {
+        when {
+            dangerCount > 0 -> "请先检查${focus}。"
+            warningCount > 0 -> "接下来请核查${focus}。"
+            infoErrorCount > 0 -> "${focus}需要更多信息，暂不能认定结果正常。"
+            readyCount == 0 -> "本地检测完成后将显示检测卡片。"
+            pendingCount > 0 -> "部分模块仍在收集本地证据。"
+            else -> "请在下方检测卡片中查看本地证据。"
+        }
+    } else {
+        when {
+            dangerCount > 0 -> "Start with ${focus}."
+            warningCount > 0 -> "Review ${focus} next."
+            infoErrorCount > 0 -> "${focus} need more context before treating results as clean."
+            readyCount == 0 -> "Detector cards will populate as local checks complete."
+            pendingCount > 0 -> "Additional modules are still collecting their local evidence."
+            else -> "Use the detector cards below to inspect local evidence in detail."
+        }
     }
 
     return DashboardOverviewModel(
         title = if (scanDurationMillis != null && scanCompletedAtEpochMillis != null && pendingCount == 0) {
-            "Scanned at ${formatDetectedTimeLocal(scanCompletedAtEpochMillis)}\nTotal time ${formatScanDuration(scanDurationMillis)}"
+            if (chinese) {
+                "扫描时间：${formatDetectedTimeLocal(scanCompletedAtEpochMillis)}\n总耗时：${formatScanDuration(scanDurationMillis, chinese = true)}"
+            } else {
+                "Scanned at ${formatDetectedTimeLocal(scanCompletedAtEpochMillis)}\nTotal time ${formatScanDuration(scanDurationMillis)}"
+            }
         } else {
-            "Security overview"
+            if (chinese) "安全概览" else "Security overview"
         },
         headline = headline,
         summary = summary,
         status = overviewStatus,
         metrics = listOf(
             DashboardOverviewMetricModel(
-                label = "Danger",
+                label = if (chinese) "危险" else "Danger",
                 value = dangerCount.toString(),
                 status = if (dangerCount > 0) DetectorStatus.danger() else DetectorStatus.allClear(),
             ),
             DashboardOverviewMetricModel(
-                label = "Warning",
+                label = if (chinese) "警告" else "Warning",
                 value = warningCount.toString(),
                 status = if (warningCount > 0) DetectorStatus.warning() else DetectorStatus.allClear(),
             ),
             DashboardOverviewMetricModel(
-                label = "Ready",
+                label = if (chinese) "已完成" else "Ready",
                 value = readyCount.toString(),
                 status = if (readyCount > 0) DetectorStatus.allClear() else DetectorStatus.info(
                     InfoKind.SUPPORT
                 ),
             ),
             DashboardOverviewMetricModel(
-                label = "Pending",
+                label = if (chinese) "等待中" else "Pending",
                 value = pendingCount.toString(),
                 status = if (pendingCount > 0) DetectorStatus.info(InfoKind.SUPPORT) else DetectorStatus.allClear(),
             ),
@@ -283,16 +301,22 @@ private fun formatDetectedTimeLocal(epochMillis: Long): String {
 
 private fun formatScanDuration(
     durationMillis: Long,
+    chinese: Boolean = false,
 ): String {
     return when {
-        durationMillis < 1_000L -> "${durationMillis}ms"
-        durationMillis < 10_000L -> String.format(Locale.US, "%.1fs", durationMillis / 1_000f)
-        else -> "${(durationMillis + 500L) / 1_000L}s"
+        durationMillis < 1_000L -> if (chinese) "${durationMillis} 毫秒" else "${durationMillis}ms"
+        durationMillis < 10_000L -> String.format(
+            Locale.US,
+            if (chinese) "%.1f 秒" else "%.1fs",
+            durationMillis / 1_000f,
+        )
+        else -> "${(durationMillis + 500L) / 1_000L}${if (chinese) " 秒" else "s"}"
     }
 }
 
 fun buildDashboardFindings(
     contributions: List<DashboardDetectorContribution>,
+    chinese: Boolean = false,
 ): List<DashboardFindingModel> {
     val prioritized = prioritizedContributions(contributions)
     val attentionFindings = prioritized.filter { contribution ->
@@ -307,9 +331,10 @@ fun buildDashboardFindings(
     if (attentionFindings.isNotEmpty()) {
         return attentionFindings.take(3).map { contribution ->
             DashboardFindingModel(
-                detectorTitle = contribution.title,
-                headline = contribution.headline,
-                detail = contribution.findingDetail ?: contribution.summary,
+                detectorTitle = if (chinese) HomeChineseText.translate(contribution.title) else contribution.title,
+                headline = if (chinese) HomeChineseText.translate(contribution.headline) else contribution.headline,
+                detail = if (chinese) HomeChineseText.translate(contribution.findingDetail ?: contribution.summary)
+                    else contribution.findingDetail ?: contribution.summary,
                 status = contribution.status,
             )
         }
@@ -318,9 +343,10 @@ fun buildDashboardFindings(
     if (contributions.any { !it.ready }) {
         return listOf(
             DashboardFindingModel(
-                detectorTitle = "Scan status",
-                headline = "Waiting for detector evidence",
-                detail = "Detector cards will expand as modules finish collecting local evidence.",
+                detectorTitle = if (chinese) "扫描状态" else "Scan status",
+                headline = if (chinese) "等待检测证据" else "Waiting for detector evidence",
+                detail = if (chinese) "各模块收集完本地证据后会展开检测卡片。"
+                    else "Detector cards will expand as modules finish collecting local evidence.",
                 status = DetectorStatus.info(InfoKind.SUPPORT),
             ),
         )
@@ -328,9 +354,10 @@ fun buildDashboardFindings(
 
     return listOf(
         DashboardFindingModel(
-            detectorTitle = "Overview",
-            headline = "No urgent findings in ready modules",
-            detail = "Open detector cards below to review detailed local evidence and secondary checks.",
+            detectorTitle = if (chinese) "概览" else "Overview",
+            headline = if (chinese) "已完成项目中无紧急发现" else "No urgent findings in ready modules",
+            detail = if (chinese) "展开下方检测卡片，查看详细证据及补充检查。"
+                else "Open detector cards below to review detailed local evidence and secondary checks.",
             status = DetectorStatus.allClear(),
         ),
     )

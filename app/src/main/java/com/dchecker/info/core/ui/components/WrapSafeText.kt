@@ -36,7 +36,8 @@ fun WrapSafeText(
     color: Color = Color.Unspecified,
     textAlign: TextAlign? = null,
 ) {
-    val safeText = remember(text) { text.withWrapOpportunities() }
+    val translatedText = if (LocalHomeChinese.current) HomeChineseText.translate(text) else text
+    val safeText = remember(translatedText) { translatedText.withWrapOpportunities() }
 
     Text(
         text = safeText,

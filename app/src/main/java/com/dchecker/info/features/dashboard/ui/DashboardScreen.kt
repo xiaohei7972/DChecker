@@ -50,11 +50,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -62,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import com.dchecker.info.BuildConfig
 import com.dchecker.info.R
 import com.dchecker.info.core.ui.components.WrapSafeText
+import com.dchecker.info.core.ui.components.LocalHomeChinese
 import com.dchecker.info.core.ui.openExternalUri
 import com.dchecker.info.core.ui.model.DetectionSeverity
 import com.dchecker.info.core.ui.presentation.formatBuildTimeUtc
@@ -107,6 +110,8 @@ fun DashboardScreen(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val locale = LocalConfiguration.current.locales[0]
+    val useChinese = locale.language == "zh" && locale.country !in setOf("TW", "HK", "MO")
     val exportLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.CreateDocument("text/plain"),
     ) { uri ->
@@ -119,128 +124,130 @@ fun DashboardScreen(
                 }
                 Toast.makeText(
                     context,
-                    "Report saved",
+                    context.getString(R.string.dashboard_report_saved),
                     Toast.LENGTH_SHORT,
                 ).show()
             } catch (e: Exception) {
                 Toast.makeText(
                     context,
-                    "Save failed: ${e.message}",
+                    context.getString(R.string.dashboard_report_save_failed, e.message.orEmpty()),
                     Toast.LENGTH_SHORT,
                 ).show()
             }
         }
     }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-    ) {
-        LazyColumn(
-            modifier = Modifier
+    CompositionLocalProvider(LocalHomeChinese provides useChinese) {
+        Box(
+            modifier = modifier
                 .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(18.dp),
-            contentPadding = PaddingValues(
-                start = 20.dp,
-                top = 16.dp,
-                end = 20.dp,
-                bottom = 28.dp,
-            ),
+                .background(MaterialTheme.colorScheme.background),
         ) {
-            item { BrandHeader() }
-            item {
-                ExportButton(
-                    onClick = {
-                        exportLauncher.launch(generateExportReportFileName())
-                    },
-                )
-            }
-            item {
-                DashboardSummarySection(
-                    overview = uiState.overview,
-                    findings = uiState.topFindings,
-                    showLoadingOverlay = uiState.isLoading,
-                )
-            }
-            items(
-                items = uiState.detectorCards,
-                key = { entry -> entry.id },
-            ) { entry ->
-                when (entry) {
-                    is DashboardDetectorCardEntry.Bootloader -> {
-                        BootloaderDetectorCard(model = entry.model)
-                    }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .statusBarsPadding()
+                    .navigationBarsPadding(),
+                verticalArrangement = Arrangement.spacedBy(18.dp),
+                contentPadding = PaddingValues(
+                    start = 20.dp,
+                    top = 16.dp,
+                    end = 20.dp,
+                    bottom = 28.dp,
+                ),
+            ) {
+                item { BrandHeader() }
+                item {
+                    ExportButton(
+                        onClick = {
+                            exportLauncher.launch(generateExportReportFileName())
+                        },
+                    )
+                }
+                item {
+                    DashboardSummarySection(
+                        overview = uiState.overview,
+                        findings = uiState.topFindings,
+                        showLoadingOverlay = uiState.isLoading,
+                    )
+                }
+                items(
+                    items = uiState.detectorCards,
+                    key = { entry -> entry.id },
+                ) { entry ->
+                    when (entry) {
+                        is DashboardDetectorCardEntry.Bootloader -> {
+                            BootloaderDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Mount -> {
-                        MountDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.Mount -> {
+                            MountDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.CustomRom -> {
-                        CustomRomDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.CustomRom -> {
+                            CustomRomDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Selinux -> {
-                        SelinuxDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.Selinux -> {
+                            SelinuxDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.DangerousApps -> {
-                        DangerousAppsDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.DangerousApps -> {
+                            DangerousAppsDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.KernelCheck -> {
-                        KernelCheckDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.KernelCheck -> {
+                            KernelCheckDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Memory -> {
-                        MemoryDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.Memory -> {
+                            MemoryDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.LSPosed -> {
-                        LSPosedDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.LSPosed -> {
+                            LSPosedDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.NativeRoot -> {
-                        NativeRootDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.NativeRoot -> {
+                            NativeRootDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.PlayIntegrityFix -> {
-                        PlayIntegrityFixDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.PlayIntegrityFix -> {
+                            PlayIntegrityFixDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Tee -> {
-                        TeeDetectorCard(
-                            model = entry.model,
-                            showDetailsDialog = showTeeDetailsDialog,
-                            showCertificatesDialog = showTeeCertificatesDialog,
-                            onExpandedChange = onTeeExpandedChange,
-                            onFooterAction = onTeeFooterAction,
-                            onDismissDetails = onDismissTeeDetails,
-                            onDismissCertificates = onDismissTeeCertificates,
-                        )
-                    }
+                        is DashboardDetectorCardEntry.Tee -> {
+                            TeeDetectorCard(
+                                model = entry.model,
+                                showDetailsDialog = showTeeDetailsDialog,
+                                showCertificatesDialog = showTeeCertificatesDialog,
+                                onExpandedChange = onTeeExpandedChange,
+                                onFooterAction = onTeeFooterAction,
+                                onDismissDetails = onDismissTeeDetails,
+                                onDismissCertificates = onDismissTeeCertificates,
+                            )
+                        }
 
-                    is DashboardDetectorCardEntry.Su -> {
-                        SuDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.Su -> {
+                            SuDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.SystemProperties -> {
-                        SystemPropertiesDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.SystemProperties -> {
+                            SystemPropertiesDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Virtualization -> {
-                        VirtualizationDetectorCard(model = entry.model)
-                    }
+                        is DashboardDetectorCardEntry.Virtualization -> {
+                            VirtualizationDetectorCard(model = entry.model)
+                        }
 
-                    is DashboardDetectorCardEntry.Zygisk -> {
-                        ZygiskDetectorCard(model = entry.model)
+                        is DashboardDetectorCardEntry.Zygisk -> {
+                            ZygiskDetectorCard(model = entry.model)
+                        }
                     }
                 }
-            }
-            item {
-                DeviceInfoCard(model = uiState.deviceInfoCard)
+                item {
+                    DeviceInfoCard(model = uiState.deviceInfoCard)
+                }
             }
         }
     }
