@@ -188,6 +188,28 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `tee deep check details are localized`() {
+        assertEquals(
+            "由于证明中的信任根缺失，启动一致性检查不可用。",
+            HomeChineseText.translate(
+                "Boot consistency check unavailable because attested root of trust was missing.",
+            ),
+        )
+        assertEquals(
+            "证明中的 verifiedBootHash 与 ro.boot.vbmeta.digest 不一致。",
+            HomeChineseText.translate(
+                "Attested verifiedBootHash did not match ro.boot.vbmeta.digest.",
+            ),
+        )
+        assertEquals(
+            "匹配 • 启动一致性检查不可用。",
+            HomeChineseText.translate("Matched • Boot consistency check unavailable."),
+        )
+        assertEquals("3/5 次可疑运行", HomeChineseText.translate("3/5 suspicious runs"))
+        assertEquals("Soter 检查：启动一致性检查不可用。", HomeChineseText.translate("Soter check: Boot consistency check unavailable."))
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
