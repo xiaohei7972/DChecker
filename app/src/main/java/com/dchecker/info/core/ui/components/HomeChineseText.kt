@@ -882,6 +882,22 @@ object HomeChineseText {
         "Android Emulator: https://developer.android.com/studio/run/emulator" to "Android 模拟器：https://developer.android.com/studio/run/emulator",
         "AOSP property_contexts: https://android.googlesource.com/platform/system/sepolicy/+/refs/heads/main/private/property_contexts" to "AOSP property_contexts：https://android.googlesource.com/platform/system/sepolicy/+/refs/heads/main/private/property_contexts",
 
+        // Home card component labels outside the model mappers.
+        "Build signals" to "构建信号",
+        "Runtime signals" to "运行时信号",
+        "Framework traces" to "框架痕迹",
+        "No package hits" to "未发现应用包命中",
+        "Runtime checks" to "运行时检查",
+        "Mappings and FD-backed code" to "内存映射与 FD 支持代码",
+        "Runtime mounts" to "运行时挂载",
+        "Namespace and consistency" to "命名空间与一致性",
+        "Kernel traces" to "内核痕迹",
+        "Spoof properties" to "伪装属性",
+        "Runtime traces" to "运行时痕迹",
+        "Native context" to "原生上下文",
+        "Host Apps" to "宿主应用",
+        "fd trap" to "FD 陷阱",
+
         // TEE report headlines and concise explanations.
         "Attestation aligned; local probes need review" to "认证结果一致，但本地探针需要核查",
         "Local TEE attestation checks aligned" to "本地 TEE 认证检查一致",
@@ -1317,6 +1333,21 @@ object HomeChineseText {
             .matchEntire(text)?.let {
                 return "受信任的 DirtySepolicy 风格访问规则被允许：${it.groupValues[1]}。"
             }
+        Regex("""^View target apps \((\d+)\)$""").matchEntire(text)?.let {
+            return "查看目标应用（${it.groupValues[1]}）"
+        }
+        Regex("""^(.+) \((\d+)\)$""").matchEntire(text)?.let {
+            val translatedLabel = translate(it.groupValues[1])
+            if (translatedLabel != it.groupValues[1]) {
+                return "${translatedLabel}（${it.groupValues[2]}）"
+            }
+        }
+        Regex("""^([^:\\n]{1,80}): (.*)$""").matchEntire(text)?.let {
+            val translatedLabel = translate(it.groupValues[1])
+            if (translatedLabel != it.groupValues[1]) {
+                return "${translatedLabel}：${it.groupValues[2]}"
+            }
+        }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
         }
