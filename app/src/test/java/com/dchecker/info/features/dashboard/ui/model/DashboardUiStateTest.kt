@@ -109,6 +109,28 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `expanded detector details are localized without rewriting raw evidence`() {
+        assertEquals("启动状态", HomeChineseText.translate("Boot state"))
+        assertEquals("检测方法", HomeChineseText.translate("Detection methods"))
+        assertEquals("策略分析", HomeChineseText.translate("Policy analysis"))
+        assertEquals("审计完整性", HomeChineseText.translate("Audit integrity"))
+        assertEquals("TEE 详情", HomeChineseText.translate("TEE details"))
+        assertEquals(
+            "用于调试、分享和人工核验的结构化导出。",
+            HomeChineseText.translate("Structured export for debugging, sharing, and manual verification."),
+        )
+        assertEquals("查看目标应用（28）", HomeChineseText.translate("View target apps (28)"))
+        assertEquals(
+            "结果：/data/adb/modules/example",
+            HomeChineseText.translate("Result: /data/adb/modules/example"),
+        )
+        assertEquals(
+            "/data/adb/modules/example",
+            HomeChineseText.translate("/data/adb/modules/example"),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
