@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simplified Chinese translations for the dashboard and common card actions. -->
+<resources>
+    <string name="app_name">DChecker</string>
+    <string name="status_info">信息</string>
+    <string name="status_all_clear">未发现异常</string>
+    <string name="status_warning">警告</string>
+    <string name="status_danger">危险</string>
+    <string name="status_info_error">错误</string>
+    <string name="status_info_support">支持</string>
+    <string name="dashboard_info_card">设备信息</string>
+    <string name="dashboard_system_time">系统时间</string>
+    <string name="dashboard_additional">其他信息</string>
+    <string name="dashboard_detectors">检测项目</string>
+    <string name="card_expand">展开卡片</string>
+    <string name="bootloader_widevine_consistency_review">Widevine 状态需要核对</string>
+    <string name="bootloader_widevine_consistency_conflict">Widevine 状态存在严重冲突</string>
+    <string name="card_collapse">收起卡片</string>
+    <string name="card_action_view_details">查看详情</string>
+    <string name="card_action_review_evidence">查看检测依据</string>
+    <string name="card_action_certificate_chain">证书链</string>
+</resources>
