@@ -1719,6 +1719,48 @@ object HomeChineseText {
         "keystore2 service unavailable" to "Keystore2 服务不可用",
         "getKeyEntry unavailable" to "getKeyEntry 不可用",
         "binder material unavailable" to "Binder 证书材料不可用",
+        "Secret key was missing after AndroidKeyStore generation." to "AndroidKeyStore 生成后缺少 SecretKey。",
+        "AndroidKeyStore did not return KeyInfo for the generated AES key." to "AndroidKeyStore 未返回所生成 AES 密钥的 KeyInfo。",
+        "AES-GCM keystore round-trip probe failed." to "AES-GCM Keystore 往返探针失败。",
+        "AES-GCM authorization checks unavailable." to "AES-GCM 授权检查不可用。",
+        "AES-GCM CBC authorization skipped." to "AES-GCM CBC 授权已跳过。",
+        "AES-GCM MAC length authorization skipped." to "AES-GCM MAC 长度授权已跳过。",
+        "AES-GCM nonce authorization skipped." to "AES-GCM Nonce 授权已跳过。",
+        "Biometric TEE integration probe requires Android 10 or newer." to "生物识别 TEE 集成探针要求 Android 10 或更高版本。",
+        "No biometric hardware feature was advertised." to "设备未声明生物识别硬件特性。",
+        "BiometricManager was unavailable." to "BiometricManager 不可用。",
+        "Strong biometric authentication was not currently available." to "当前无法使用强生物识别认证。",
+        "Biometric TEE integration probe failed." to "生物识别 TEE 集成探针失败。",
+        "Keystore2 raw transaction probe requires Android 12 or newer." to "Keystore2 原始事务探针要求 Android 12 或更高版本。",
+        "Keystore2 binder endpoint was not available." to "Keystore2 Binder 端点不可用。",
+        "Keystore2 reply was empty." to "Keystore2 回复为空。",
+        "Keystore2 reply was too small to fingerprint." to "Keystore2 回复过短，无法提取指纹。",
+        "Keystore2 reply was missing the secondary fingerprint word." to "Keystore2 回复缺少第二指纹字。",
+        "Keystore2 reply skipped the String16 slot and jumped straight to KEY_NOT_FOUND." to "Keystore2 回复跳过 String16 槽位并直接进入 KEY_NOT_FOUND。",
+        "Unable to provision a PURPOSE_ATTEST_KEY reference key. The split-path comparison needs one." to "无法配置 PURPOSE_ATTEST_KEY 参考密钥；分路径比较需要该密钥。",
+        "Legacy keystore capture hook bootstrap failed." to "旧版 Keystore 捕获 Hook 引导失败。",
+        "Legacy keystore path probe failed." to "旧版 Keystore 路径探针失败。",
+        "Prior attested chain was unavailable for updateSubcomponent persistence probe." to "updateSubcomponent 持久化探针所需的先前证明证书链不可用。",
+        "Generated alias did not return an AndroidKeyStore private key for update." to "生成的别名未返回用于更新的 AndroidKeyStore 私钥。",
+        "Keystore2 getKeyEntry() metadata was unavailable after updateSubcomponent." to "updateSubcomponent 后无法获取 Keystore2 getKeyEntry() 元数据。",
+        "UpdateSubcomponent stale response persistence probe failed." to "UpdateSubcomponent 陈旧响应持久化探针失败。",
+        "setKeyEntry(existing AndroidKeyStorePrivateKey, markerChain) completed." to "setKeyEntry(existing AndroidKeyStorePrivateKey, markerChain) 已完成。",
+        "Keystore2 getKeyEntry() returned no post-update metadata snapshots." to "Keystore2 getKeyEntry() 未返回更新后的元数据快照。",
+        "kind=NONE, marker leaf returned without retained prior narrative." to "类型=NONE，返回了标记叶证书，但没有保留先前证明叙述。",
+        "Grant access-vector private binder probe requires Android 12 or newer." to "Grant 访问向量私有 Binder 探针要求 Android 12 或更高版本。",
+        "Private: grant access-vector probe did not complete." to "私有路径：Grant 访问向量探针未完成。",
+        "Private: grantee getKeyEntry(GRANT) succeeded without GET_INFO." to "私有路径：受授者 getKeyEntry(GRANT) 在没有 GET_INFO 的情况下成功。",
+        "Private: grantee getKeyEntry(GRANT) rejected with PERMISSION_DENIED." to "私有路径：受授者 getKeyEntry(GRANT) 被 PERMISSION_DENIED 拒绝。",
+        "Grant caller-binding private binder probe requires Android 12 or newer." to "Grant 调用方绑定私有 Binder 探针要求 Android 12 或更高版本。",
+        "Private: grant caller-binding probe did not complete." to "私有路径：Grant 调用方绑定探针未完成。",
+        "Private: non-grantee owner replay succeeded for isolated grant handle." to "私有路径：非受授者所有者对隔离 Grant 句柄的重放成功。",
+        "Private: owner replay rejected with KEY_NOT_FOUND." to "私有路径：所有者重放被 KEY_NOT_FOUND 拒绝。",
+        "Skipped because an existing grant detector already reported danger." to "已跳过，因为现有 Grant 检测器已经报告危险结果。",
+        "not executed" to "未执行",
+        "reply parse unavailable" to "回复解析不可用",
+        "Request parse interrupted" to "请求解析中断",
+        "Reply parse interrupted" to "回复解析中断",
+        "KeyMetadata return value parse" to "KeyMetadata 返回值解析",
     )
 
     private val countPatterns = listOf(
@@ -2044,6 +2086,39 @@ object HomeChineseText {
         Regex("""^(.+) failed: (.+)$""").matchEntire(text)?.let {
             val lhs = translate(it.groupValues[1])
             return "$lhs 失败：${it.groupValues[2]}"
+        }
+        Regex("""^Keystore2 reply used an unknown serialization fingerprint \((.+)\)\.$""").matchEntire(text)?.let {
+            return "Keystore2 回复使用了未知序列化指纹（${it.groupValues[1]}）。"
+        }
+        Regex("""^RKP-path generateKey hard-failed, which implies rkp_only is set \(reachability=(.+)\): (.+)$""").matchEntire(text)?.let {
+            return "RKP 路径 generateKey 严重失败，提示已设置 rkp_only（可达性=${it.groupValues[1]}）：${it.groupValues[2]}"
+        }
+        Regex("""^setKeyEntry\(existing AndroidKeyStorePrivateKey, markerChain\) failed: (.+)$""").matchEntire(text)?.let {
+            return "setKeyEntry(existing AndroidKeyStorePrivateKey, markerChain) 失败：${it.groupValues[1]}"
+        }
+        Regex("""^Grant (access-vector|caller-binding) private binder probe failed: (.+)$""").matchEntire(text)?.let {
+            val name = if (it.groupValues[1] == "access-vector") "访问向量" else "调用方绑定"
+            return "Grant $name 私有 Binder 探针失败：${it.groupValues[2]}"
+        }
+        Regex("""^Private: owner key generation failed \((.+)\)\.$""").matchEntire(text)?.let {
+            return "私有路径：所有者密钥生成失败（${it.groupValues[1]}）。"
+        }
+        Regex("""^Private: grantee readback unavailable \((.+)\)\.$""").matchEntire(text)?.let {
+            return "私有路径：受授者回读不可用（${translate(it.groupValues[1])}）。"
+        }
+        Regex("""^Private: owner replay unavailable \((.+)\)\.$""").matchEntire(text)?.let {
+            return "私有路径：所有者重放不可用（${translate(it.groupValues[1])}）。"
+        }
+        Regex("""^\[(Public|Hidden|Private)] (.+)$""").matchEntire(text)?.let {
+            val stage = when (it.groupValues[1]) {
+                "Public" -> "公开路径"
+                "Hidden" -> "隐藏路径"
+                else -> "私有路径"
+            }
+            return "[$stage] ${translate(it.groupValues[2])}"
+        }
+        Regex("""^\[!] (Request parse interrupted|Reply parse interrupted): (.+)$""").matchEntire(text)?.let {
+            return "[!] ${translate(it.groupValues[1])}：${it.groupValues[2]}"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
