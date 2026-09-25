@@ -1164,21 +1164,21 @@ object HomeChineseText {
             .matchEntire(text)?.let {
                 return "在 ${it.groupValues[2]} 个类别中命中 ${it.groupValues[1]} 个应用包。除非发现 HMA 隐藏，否则应用包命中仅计为警告。${it.groupValues[3]}"
             }
-        Regex("""^Listed (\\d+) services\\.$""").matchEntire(text)?.let {
+        Regex("""^Listed (\d+) services\.$""").matchEntire(text)?.let {
             return "已列出 ${it.groupValues[1]} 个服务。"
         }
-        Regex("""^PackageManager still exposed only (\\d+) visible packages, which is unusually low and can happen under HMA-style whitelist filtering\\.$""")
+        Regex("""^PackageManager still exposed only (\d+) visible packages, which is unusually low and can happen under HMA-style whitelist filtering\.$""")
             .matchEntire(text)?.let {
                 return "PackageManager 仍只显示 ${it.groupValues[1]} 个可见应用包，数量异常偏低，可能与 HMA 类白名单过滤有关。"
             }
-        Regex("""^PackageManager reported a full inventory surface but returned only (\\d+) visible packages\\. That is unusually low for a modern device and can happen under HMA-style whitelist filtering\\.$""")
+        Regex("""^PackageManager reported a full inventory surface but returned only (\d+) visible packages\. That is unusually low for a modern device and can happen under HMA-style whitelist filtering\.$""")
             .matchEntire(text)?.let {
                 return "PackageManager 声称提供完整应用清单，但只返回 ${it.groupValues[1]} 个可见应用包；这对现代设备来说异常偏低，可能与 HMA 类白名单过滤有关。"
             }
-        Regex("""^Consistent \\((\\d+)\\)$""").matchEntire(text)?.let {
+        Regex("""^Consistent \((\d+)\)$""").matchEntire(text)?.let {
             return "一致（${it.groupValues[1]} 个来源）"
         }
-        Regex("""^No readable data surfaced for (.+)\\.$""").matchEntire(text)?.let {
+        Regex("""^No readable data surfaced for (.+)\.$""").matchEntire(text)?.let {
             return "${translate(it.groupValues[1])}未读取到可用数据。"
         }
         Regex("""^(.+) across sources$""").matchEntire(text)?.let {
@@ -1250,11 +1250,11 @@ object HomeChineseText {
         Regex("""^MSD: (.*)$""").matchEntire(text)?.let {
             return "MSD：${it.groupValues[1]}"
         }
-        Regex("""^Checked (\\d+) process contexts; (\\d+) /proc reads were denied\\. Denied reads are kept as supporting visibility evidence, not direct root-process proof\\.$""")
+        Regex("""^Checked (\d+) process contexts; (\d+) /proc reads were denied\. Denied reads are kept as supporting visibility evidence, not direct root-process proof\.$""")
             .matchEntire(text)?.let {
                 return "已检查 ${it.groupValues[1]} 个进程上下文，其中 ${it.groupValues[2]} 次 /proc 读取被拒绝。读取被拒仅作为可见性辅助证据，不直接证明存在 Root 进程。"
             }
-        Regex("""^(.+) footprints were found under /data/adb, which is a direct root-management signal\\.$""")
+        Regex("""^(.+) footprints were found under /data/adb, which is a direct root-management signal\.$""")
             .matchEntire(text)?.let {
                 return "在 /data/adb 下发现 ${it.groupValues[1]} 痕迹，这是直接的 Root 管理信号。"
             }
