@@ -1458,6 +1458,21 @@ object HomeChineseText {
         "Grant-domain isolated grantee could not be bound." to "无法绑定 Grant 域隔离受授者。",
         "isolated binder call blocked: owner did not pass keystore2 binder." to "隔离 Binder 调用被阻止：所有者未传递 keystore2 Binder。",
         "isolated private binder readback blocked." to "隔离私有 Binder 回读被阻止。",
+        "No certificate chain was available." to "没有可用的证书链。",
+        "Dual-algorithm comparison could not collect both RSA and EC attestation chains." to "双算法比较无法同时收集 RSA 与 EC 证明证书链。",
+        "No certificate chain available for revocation checks." to "没有可用于吊销检查的证书链。",
+        "Built-in revocation snapshot is active; online refresh is awaiting startup consent." to "正在使用内置吊销快照；在线刷新正在等待启动时授权。",
+        "Direct HTTPS fetch still succeeded." to "直接 HTTPS 获取仍然成功。",
+        "CRL refresh timed out." to "CRL 刷新超时。",
+        "CRL host lookup failed." to "CRL 主机解析失败。",
+        "The revocation host could not be resolved." to "无法解析吊销服务主机。",
+        "CRL response could not be parsed." to "无法解析 CRL 响应。",
+        "CRL TLS handshake failed." to "CRL TLS 握手失败。",
+        "CRL connection failed." to "CRL 连接失败。",
+        "CRL refresh failed." to "CRL 刷新失败。",
+        "Built-in CRL snapshot could not be parsed." to "无法解析内置 CRL 快照。",
+        "Built-in CRL snapshot could not be loaded." to "无法加载内置 CRL 快照。",
+        "Built-in CRL snapshot failed." to "内置 CRL 快照失败。",
     )
 
     private val countPatterns = listOf(
@@ -1861,6 +1876,12 @@ object HomeChineseText {
                 else -> "私有路径"
             }
             return "$stage 隔离回读失败：${it.groupValues[2]}"
+        }
+        Regex("""^Google's revocation feed did not respond within (.+)s\.$""").matchEntire(text)?.let {
+            return "Google 吊销状态源在 ${it.groupValues[1]} 秒内未响应。"
+        }
+        Regex("""^CRL server returned HTTP (.+)\.$""").matchEntire(text)?.let {
+            return "CRL 服务器返回 HTTP ${it.groupValues[1]}。"
         }
         Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
