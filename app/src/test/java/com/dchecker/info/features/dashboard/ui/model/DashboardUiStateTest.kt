@@ -317,6 +317,36 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `final tee reducer display formats are localized`() {
+        assertEquals(
+            "证明版本 300 • Keymaster 4 • Android 140000",
+            HomeChineseText.translate("attest 300 • keymaster 4 • Android 140000"),
+        )
+        assertEquals(
+            "运行时补丁 2026-09-01 • 证明补丁 2026-09-01 • 厂商补丁 2026-08-01 • 启动补丁 2026-08-01",
+            HomeChineseText.translate(
+                "runtime 2026-09-01 • attest 2026-09-01 • vendor 2026-08-01 • boot 2026-08-01",
+            ),
+        )
+        assertEquals(
+            "链长 3 • 证明扩展 1 • 受信任证书 #2",
+            HomeChineseText.translate("len 3 • ext 1 • trusted #2"),
+        )
+        assertEquals(
+            "寄存器计时器时序旁路仍作为辅助证据；比率 1.12x 位于阈值 1.50x 内。",
+            HomeChineseText.translate(
+                "Register timer timing side-channel stayed supplementary; ratio 1.12x stayed within 1.50x.",
+            ),
+        )
+        assertEquals(
+            "匹配 类型=NON_GRANTEE_READBACK_ALLOWED uid=10234 ownerReplay=true",
+            HomeChineseText.translate(
+                "Matched kind=NON_GRANTEE_READBACK_ALLOWED uid=10234 ownerReplay=true",
+            ),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
