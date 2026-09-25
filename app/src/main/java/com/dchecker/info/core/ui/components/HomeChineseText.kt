@@ -1342,7 +1342,7 @@ object HomeChineseText {
                 return "${translatedLabel}（${it.groupValues[2]}）"
             }
         }
-        Regex("""^([^:\\n]{1,80}): (.*)$""").matchEntire(text)?.let {
+        Regex("""^([^:\n]{1,80}): (.*)$""").matchEntire(text)?.let {
             val translatedLabel = translate(it.groupValues[1])
             if (translatedLabel != it.groupValues[1]) {
                 return "${translatedLabel}：${it.groupValues[2]}"
