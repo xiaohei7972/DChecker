@@ -1712,6 +1712,13 @@ object HomeChineseText {
         "Generated key characteristics omit RSA_OAEP_MGF_DIGEST on KeyMint 3+." to "KeyMint 3+ 生成的密钥 characteristics 缺少 RSA_OAEP_MGF_DIGEST。",
         "RSA_OAEP_MGF_DIGEST was not enforced by the selected hardware security level." to "所选硬件安全等级未强制执行 RSA_OAEP_MGF_DIGEST。",
         "Generated key characteristics exactly match hardware-enforced MGF1 SHA-256." to "生成密钥的 characteristics 与硬件强制的 MGF1 SHA-256 完全一致。",
+        "generate failed" to "生成失败",
+        "private key missing" to "私钥缺失",
+        "sign failed" to "签名失败",
+        "keystore chain unavailable" to "Keystore 证书链不可用",
+        "keystore2 service unavailable" to "Keystore2 服务不可用",
+        "getKeyEntry unavailable" to "getKeyEntry 不可用",
+        "binder material unavailable" to "Binder 证书材料不可用",
     )
 
     private val countPatterns = listOf(
