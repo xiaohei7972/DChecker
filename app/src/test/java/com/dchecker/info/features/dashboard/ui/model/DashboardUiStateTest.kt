@@ -63,6 +63,15 @@ class DashboardUiStateTest {
             HomeChineseText.translate("5 rules · 2 info · 0 native · 1 Build · 2 prop-area hole(s)"),
         )
         assertEquals("/data/adb/modules", HomeChineseText.translate("/data/adb/modules"))
+        assertEquals("已列出 18 个服务。", HomeChineseText.translate("Listed 18 services."))
+        assertEquals("一致（3 个来源）", HomeChineseText.translate("Consistent (3)"))
+        assertEquals("来源：native libc", HomeChineseText.translate("Source: native libc"))
+        assertEquals(
+            "属性区、序列号与残留值检查未发现异常；已检查 8 个跟踪属性名，覆盖 2 个属性区上下文。",
+            HomeChineseText.translate(
+                "Tracked property area, serial, and residual value checks were clean; checked 8 tracked property name(s) across 2 property-area context(s)",
+            ),
+        )
     }
 
     @Test
