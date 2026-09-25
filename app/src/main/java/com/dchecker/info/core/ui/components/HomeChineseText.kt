@@ -703,6 +703,174 @@ object HomeChineseText {
         "No common KernelSU, APatch, Magisk, SUSFS, or cgroup-leak traces surfaced from the current probe set." to "当前探针未发现常见 KernelSU、APatch、Magisk、SUSFS 或 cgroup 泄露痕迹。",
         "Native coverage was unavailable on this build, so only Java-side probes were used." to "当前构建缺少原生检测，因此仅使用 Java 侧探针。",
         "Available probes were clean, but package visibility, property-area, or native symbol coverage was incomplete on this build." to "可用探针未发现异常，但应用可见性、属性区或原生符号检测覆盖不完整。",
+        // Second-pass Kotlin mapper strings used by Home detector cards.
+        "Bootloader scan failed." to "引导加载程序扫描失败。",
+        "Attested deviceLocked" to "认证的 deviceLocked",
+        "Attested hash vs vbmeta digest" to "认证哈希与 vbmeta 摘要",
+        "Verified boot coherence" to "验证启动一致性",
+        "Property source mismatch" to "属性来源不一致",
+        "Widevine credential" to "Widevine 凭据",
+        "Widevine Java/native parity" to "Widevine Java/原生一致性",
+        "Key attestation" to "密钥认证",
+        "Package visibility looked restricted, so clean package results may under-report ROM apps." to "应用可见性看起来受到限制，因此未发现异常的应用包结果可能漏报 ROM 相关应用。",
+        "Custom ROM scan failed." to "第三方 ROM 扫描失败。",
+        "No custom ROM signature surfaced from available probes, but package visibility, property-area, or native symbol coverage was incomplete." to "可用探针未发现第三方 ROM 特征，但应用可见性、属性区或原生符号检测覆盖不完整。",
+        "Tracked property area, serial, and residual value checks were clean" to "属性区、序列号与残留值检查未发现异常",
+        "tracked property names" to "个已跟踪属性名",
+        "PackageManager, createPackageContext + ZipFile, open APK descriptors, storage mirrors, loopback, IPC, accessibility, and native package-path probes are collecting local evidence." to "正在通过 PackageManager、createPackageContext + ZipFile、APK 文件描述符、存储镜像、回环连接、IPC、无障碍及原生应用路径探针收集本地证据。",
+        "Dangerous app scan failed before inventory could be built." to "在完成应用清单前，风险应用扫描已失败。",
+        "Multiple fixed shared-storage baseline paths returned EACCES/EPERM under stat(). This suggests shared user gid or related zygote storage groups may have been restricted." to "多个固定共享存储基线路径在 stat() 检查时返回 EACCES/EPERM，可能表示共享用户 GID 或相关 Zygote 存储组受到限制。",
+        "createPackageContext + ZipFile, open APK descriptor, and storage-side probes still ran, but a clean result may under-report installed tools when PackageManager visibility is scoped." to "createPackageContext + ZipFile、APK 文件描述符与存储侧探针仍已运行，但当 PackageManager 可见性受限时，正常结果可能漏报已安装工具。",
+        "PackageManager, createPackageContext + ZipFile, open APK descriptors, storage, loopback, IPC, accessibility, and native package-path probes did not surface known high-risk tools." to "PackageManager、createPackageContext + ZipFile、APK 文件描述符、存储、回环连接、IPC、无障碍和原生应用路径探针均未发现已知高风险工具。",
+        "These packages were detected by direct corroboration probes but hidden from PackageManager inventory. This is the only Dangerous Apps path that stays red." to "这些应用包被直接交叉探针发现，但未出现在 PackageManager 清单中；这是风险应用检测中唯一保持红色告警的情况。",
+        "Probe families" to "探针类别",
+        "Full inventory access" to "完整应用清单访问",
+        "Scoped inventory access" to "受限应用清单访问",
+        "Device info collection failed." to "设备信息收集失败。",
+        "Kernel naming, boot parameter, pointer-exposure, and Unicode path-bypass heuristics are collecting local evidence." to "正在收集内核命名、启动参数、指针暴露和 Unicode 路径绕过等本地证据。",
+        "Kernel Check failed before evidence could be assembled." to "在完成证据整理前，内核检测已失败。",
+        "The kernel identity read through uname disagrees with the identity exported through /proc or with the value captured when this app's runtime started, which points at active kernel version spoofing." to "通过 uname 读取的内核标识与 /proc 导出值或应用启动时记录值不一致，这可能表明存在主动的内核版本伪装。",
+        "Kernel identity text or boot-time native checks surfaced markers commonly seen on modified or community-built kernels." to "内核标识文本或启动阶段原生检查发现了常见于修改版或社区内核的标记。",
+        "Kernel naming" to "内核命名",
+        "No hard kernel naming or boot-time anomaly surfaced." to "未发现明确的内核命名或启动阶段异常。",
+        "No hard kernel naming anomaly surfaced from fallback identity reads, but native boot/cmdline checks were unavailable." to "备用标识读取未发现明确的内核命名异常，但原生启动参数检查不可用。",
+        "Gathering local kernel evidence." to "正在收集本地内核证据。",
+        "Kernel Check scan failed." to "内核检测扫描失败。",
+        "The kernel identity differs between the sources that export it, so the version this device reports to apps is being rewritten rather than simply being unusual." to "不同来源导出的内核标识不一致，说明设备向应用报告的版本可能被重写，而不只是版本本身较为特殊。",
+        "Modified or community-built kernels can change trust posture, boot state, and device integrity behavior." to "修改版或社区内核可能改变设备的信任状态、启动状态与完整性行为。",
+        "These heuristics do not prove malicious compromise, but they do indicate the kernel differs from conservative stock expectations." to "这些启发式信号不能证明设备遭到恶意入侵，但说明内核与保守的原厂预期存在差异。",
+        "Play Integrity, banking apps, or DRM-sensitive apps may react differently on such kernels." to "Play Integrity、银行应用或 DRM 敏感应用在此类内核上可能表现不同。",
+        "Behavior-level signals are weaker than direct naming or boot parameter hits and should be interpreted with device context." to "行为级信号弱于直接的内核命名或启动参数命中，应结合设备实际环境判断。",
+        "A partial CVE patch or exposed kernel pointers can reflect aftermarket hardening gaps rather than active compromise." to "CVE 修复不完整或内核指针暴露可能反映第三方内核加固不足，而不一定表示正在被攻击。",
+        "The CVE-2024-43093 probe suggests the path-filter fix is missing or incomplete, but this remains informational context rather than a root or tamper verdict." to "CVE-2024-43093 探针提示路径过滤修复可能缺失或不完整，但这只是参考信息，不应直接判定 Root 或篡改。",
+        "This signal is useful for hardening posture, but it should not elevate the entire kernel card to warning on its own." to "该信号可用于评估加固状态，但不应单独把整个内核卡片提升为警告。",
+        "The CVE-2024-43093 probe was inconclusive, so this card cannot claim the path-filter fix is present." to "CVE-2024-43093 探针结果无法确定，因此不能认定路径过滤修复已经存在。",
+        "An inconclusive result is weaker than a warning and can happen when direct Android/data listing behavior does not allow a clean bypass experiment." to "无法确定的结果弱于警告；当 Android/data 的直接列目录行为不适合进行稳定绕过实验时可能出现这种情况。",
+        "No hard kernel naming marker surfaced from fallback identity reads, but native-only /proc checks were unavailable." to "备用内核标识读取未发现明确命名标记，但仅原生可用的 /proc 检查不可用。",
+        "This support-only result has reduced coverage and should not be read as a strong clean kernel verdict." to "该结果仅用于辅助判断且覆盖受限，不应视为内核完全正常的强结论。",
+        "No suspicious naming, boot parameter, or behavior signal surfaced." to "未发现可疑的内核命名、启动参数或行为信号。",
+        "This remains heuristic evidence rather than proof of a fully stock device." to "这仍属于启发式证据，不能证明设备完全处于原厂状态。",
+        "Keyword families checked" to "已检查关键词组",
+        "Cmdline rules checked" to "已检查启动参数规则",
+        "Identity sources" to "标识来源",
+        "Unicode ignorable codepoints still bypass the path filter." to "Unicode 可忽略码点仍可绕过路径过滤。",
+        "ZWC is blocked, but at least one other ignorable codepoint still bypasses the path filter." to "ZWC 已被阻止，但至少还有一个其他可忽略码点能够绕过路径过滤。",
+        "The tested bypass characters were blocked." to "测试的绕过字符均已被阻止。",
+        "The probe could not determine a stable patch state." to "探针无法确定稳定的修复状态。",
+        "kptr_restrict appears disabled." to "kptr_restrict 似乎已禁用。",
+        "Kernel addresses remained hidden during the native probe." to "原生探针运行期间内核地址保持隐藏。",
+        "Native /proc coverage was unavailable, so pointer exposure could not be verified." to "原生 /proc 检查不可用，因此无法验证内核指针暴露情况。",
+        "Single source" to "单一来源",
+        "Runtime probes" to "运行时探针",
+        "Binder probes" to "Binder 探针",
+        "Class loading, ClassLoader chains, XposedBridge fields, callbacks, package metadata, stack traces, Binder bridges, zygote permission GID audits, runtime artifacts, logcat leaks, and LSPosed-specific native traces are collecting local evidence." to "正在收集类加载、ClassLoader 链、XposedBridge 字段、回调、应用元数据、堆栈、Binder 桥、Zygote 权限 GID、运行时痕迹、logcat 泄露和 LSPosed 原生痕迹等本地证据。",
+        "LSPosed detection failed before evidence could be assembled." to "在完成证据整理前，LSPosed 检测已失败。",
+        "Binder bridge replies, loaded Xposed classes, XposedBridge fields, callback handlers, runtime artifacts, logcat leaks, zygote permission GID mismatches, dirty SELinux policy rules, stack trace signatures, or native LSPosed keywords point to active hook-framework presence rather than passive install residue." to "Binder 桥响应、已加载的 Xposed 类、XposedBridge 字段、回调处理器、运行时痕迹、logcat 泄露、Zygote 权限 GID 不一致、异常 SELinux 策略、堆栈特征或 LSPosed 原生关键词，更倾向于说明 Hook 框架正在活动，而非仅有安装残留。",
+        "Installed managers, deep ClassLoader chains, environment residue, dirty SELinux policy drift, or pattern-only logcat traces were found, but the current process did not expose enough stronger runtime evidence to treat the framework as confirmed active here." to "发现管理器应用、较深的 ClassLoader 链、环境残留、SELinux 策略漂移或仅模式匹配的 logcat 痕迹，但当前进程没有暴露足够强的运行时证据，不能确认框架正在此进程中活动。",
+        "This LSPosed evidence slice was unavailable or scoped, so it is not treated as clean." to "该 LSPosed 证据范围不可用或受限，因此不能视为正常。",
+        "No signal surfaced in this LSPosed evidence slice." to "当前 LSPosed 证据范围内未发现信号。",
+        "Gathering class, ClassLoader, Binder, runtime-artifact, logcat, package, SELinux policy, and native runtime evidence." to "正在收集类、ClassLoader、Binder、运行时痕迹、logcat、应用包、SELinux 策略和原生运行时证据。",
+        "LSPosed scan failed." to "LSPosed 扫描失败。",
+        "Loaded Xposed classes, bridge fields, Binder bridge responses, runtime artifacts, logcat leaks, dirty SELinux policy rules, and native LSPosed keywords are stronger evidence than package residue because they touch the current process, live policy, or system services directly." to "已加载的 Xposed 类、桥接字段、Binder 桥响应、运行时痕迹、logcat 泄露、异常 SELinux 策略和 LSPosed 原生关键词，比单纯应用包残留更强，因为它们直接涉及当前进程、实时策略或系统服务。",
+        "This card still observes only a narrow runtime slice. Read it together with Memory, Native Root, Mount, and System Properties when the setup is actively hiding itself." to "此卡片仍只观察有限的运行时范围；若环境存在主动隐藏，请结合内存、原生 Root、挂载和系统属性检测一起判断。",
+        "Manager packages, Xposed module meta-data, or dirty SELinux policy drift show framework or root-policy residue, but they do not prove the current process is hooked right now." to "管理器应用、Xposed 模块元数据或 SELinux 策略漂移可以说明框架或 Root 策略残留，但不能证明当前进程此刻正被 Hook。",
+        "Hardened setups can avoid exposing direct stack or class evidence in the current app, so yellow-only results still deserve correlation with other detector cards." to "经过加固的环境可能不会向当前应用暴露直接的堆栈或类证据，因此仅黄色结果仍应与其他检测卡片交叉核对。",
+        "No LSPosed/Xposed signal surfaced from available probes, but one or more runtime evidence paths were unavailable." to "可用探针未发现 LSPosed/Xposed 信号，但一个或多个运行时证据路径不可用。",
+        "This support-only result lowers confidence only for the probes that actually ran." to "该辅助结果只能降低对已实际运行探针所覆盖风险的怀疑。",
+        "The current app process did not expose LSPosed/Xposed class loading, Binder bridge behavior, or LSPosed-native runtime strings." to "当前应用进程未暴露 LSPosed/Xposed 类加载、Binder 桥行为或 LSPosed 原生运行时字符串。",
+        "A clean result lowers confidence in active LSPosed-style hooking for this process, but it does not prove the whole device is stock." to "正常结果可降低当前进程存在 LSPosed 类 Hook 的可能性，但不能证明整台设备完全原厂。",
+        "Bridge field hits" to "桥接字段命中",
+        "Stack hits" to "堆栈命中",
+        "Callback hits" to "回调命中",
+        "Logcat availability" to "Logcat 可用性",
+        "Class load" to "类加载",
+        "ClassLoader chain" to "ClassLoader 链",
+        "XposedBridge fields" to "XposedBridge 字段",
+        "Xposed meta-data" to "Xposed 元数据",
+        "Stack trace" to "堆栈跟踪",
+        "Hook callbacks" to "Hook 回调",
+        "Binder bridge" to "Binder 桥",
+        "Logcat leaks" to "Logcat 泄露",
+        "Dirty sepolicy" to "异常 SELinux 策略",
+        "Memory scan failed." to "内存扫描失败。",
+        "Magisk mounts" to "Magisk 挂载",
+        "Debug ramdisk" to "调试 ramdisk",
+        "System RW" to "系统分区可写",
+        "Overlay mounts" to "Overlay 挂载",
+        "Loop devices" to "Loop 设备",
+        "dm-verity bypass" to "dm-verity 绕过",
+        "Overlayfs support" to "Overlayfs 支持",
+        "Tmpfs anomaly" to "Tmpfs 异常",
+        "Namespace access" to "命名空间访问",
+        "Mount ID loophole" to "挂载 ID 漏洞",
+        "Bind mount root" to "Root 绑定挂载",
+        "Mount scan failed." to "挂载扫描失败。",
+        "Native Root scan failed." to "原生 Root 扫描失败。",
+        "Direct native hits are stronger than plain package or property signals because they come from syscall behavior, runtime processes, cgroup visibility mismatches, or corroborated runtime residue paths." to "直接原生命中比单纯的应用包或属性信号更强，因为它们来自系统调用行为、运行时进程、cgroup 可见性不一致或相互印证的运行时残留路径。",
+        "Isolated-process mount drift, manager manifest fingerprints, kernel strings, property residue, or cgroup leakage can indicate native-root history or selective runtime hiding, but they are weaker than direct syscall-side probes." to "隔离进程挂载差异、管理器清单特征、内核字符串、属性残留或 cgroup 泄露可能表明存在原生 Root 历史或选择性隐藏，但弱于直接的系统调用侧探针。",
+        "No native root indicator surfaced from available probes, but one or more support-only evidence paths were unavailable or scoped." to "可用探针未发现原生 Root 指标，但一个或多个辅助证据路径不可用或受限。",
+        "Kernel hits" to "内核命中",
+        "Play Integrity Fix scan failed." to "Play Integrity Fix 扫描失败。",
+        "getprop hits" to "getprop 命中",
+        "JVM fallback" to "JVM 备用读取",
+        "Native libc props" to "原生 libc 属性",
+        "repeatability failed" to "重复性检查失败",
+        "Dirty sepolicy rule: MSD" to "异常 SELinux 策略规则：MSD",
+        "Dirty sepolicy rule: Droidspaces" to "异常 SELinux 策略规则：Droidspaces",
+        "below minimum" to "低于最低要求",
+        "meets minimum" to "达到最低要求",
+        "Readable auditd event logs exposed the same nonce-tagged controlled AVC denial seen by the direct libselinux callback probe." to "可读取的 auditd 事件日志暴露了与 libselinux 直接回调探针相同、带 nonce 标记的受控 AVC 拒绝事件。",
+        "Readable AVC denials referenced su/magisk/ksud-related actor strings in comm, exe, path, or name fields." to "可读取的 AVC 拒绝日志在 comm、exe、path 或 name 字段中出现了 su/magisk/ksud 相关主体字符串。",
+        "rewrite markers" to "重写标记",
+        "su-related actor" to "SU 相关主体",
+        "Readable auditpatch residue" to "可读取的 auditpatch 残留",
+        "did not expose" to "未暴露",
+        "SELinux paradox: permission denied can prove enforcing mode." to "SELinux 的“悖论”是：权限被拒绝反而可以证明处于 Enforcing 模式。",
+        "Enforcing mode blocks disallowed actions instead of only logging them." to "Enforcing 模式会阻止不允许的操作，而不只是记录日志。",
+        "Production Android devices are expected to run enforcing SELinux." to "量产 Android 设备通常应运行 Enforcing SELinux。",
+        "app_zygote can query SELinux context validity through selinux_check_context, which ultimately writes to /sys/fs/selinux/context." to "app_zygote 可通过 selinux_check_context 查询 SELinux 上下文有效性，该过程最终会写入 /sys/fs/selinux/context。",
+        "A dedicated app_zygote carrier can also probe privileged context materialization by writing candidate labels to /proc/self/attr/current and classifying non-EINVAL outcomes." to "专用 app_zygote 载体还可以通过向 /proc/self/attr/current 写入候选标签并分析非 EINVAL 结果，探测特权上下文是否可被实例化。",
+        "The policyload/access seqno oracle must be captured inside zygotePreloadName; the isolated child may lose app_zygote SELinuxfs access and should downgrade missing coverage to info." to "policyload/access 的序列号探针必须在 zygotePreloadName 内捕获；隔离子进程可能失去 app_zygote 的 SELinuxfs 访问能力，此时缺失覆盖应降级为信息提示。",
+        "Audit or log surfaces can be rewritten in user space, so missing suspicious tcontext values is not always proof." to "审计或日志界面可能在用户空间被重写，因此没有出现可疑 tcontext 值并不总能作为证明。",
+        "Readable AVC denial lines should be treated as audit-surface leakage, not as direct proof of a root process." to "可读取的 AVC 拒绝行应视为审计界面泄露，而不是 Root 进程存在的直接证据。",
+        "comm, exe, path, and name fields inside AVC logs are supporting hints, not standalone proof of a live su daemon." to "AVC 日志中的 comm、exe、path 和 name 字段仅是辅助线索，不能单独证明存在正在运行的 su 守护进程。",
+        "Carrier state=untrusted" to "载体状态=不受信任",
+        "Carrier state=failed" to "载体状态=失败",
+        "SU scan failed." to "SU 扫描失败。",
+        "System Properties scan failed." to "系统属性扫描失败。",
+        "Build cluster" to "构建特征组",
+        "QEMU guest properties" to "QEMU 客体属性",
+        "qemud service" to "qemud 服务",
+        "AVF runtime" to "AVF 运行环境",
+        "Emulator device node" to "模拟器设备节点",
+        "Host dex path" to "宿主 DEX 路径",
+        "Classpath/source mismatch" to "类路径/来源不一致",
+        "Current package missing from UID" to "当前应用包未出现在 UID 中",
+        "Cross-process path drift" to "跨进程路径差异",
+        "Native timing trap" to "原生时序陷阱",
+        "ASM counter trap" to "ASM 计数器陷阱",
+        "Sacrificial openat2" to "牺牲进程 openat2 探针",
+        "Parallel Space" to "平行空间",
+        "No direct virtualization signal surfaced from the available probes, but one or more native, preload, helper-process, graphics, namespace, or syscall paths were unavailable." to "可用探针未发现直接虚拟化信号，但一个或多个原生、预加载、辅助进程、图形、命名空间或系统调用路径不可用。",
+        "Virtualization scan failed." to "虚拟化扫描失败。",
+        "Mountinfo lines" to "mountinfo 行",
+        "Zygisk detection failed." to "Zygisk 检测失败。",
+        "This is stronger than package residue because it touches live loader behavior, specialization side effects, or process runtime state directly." to "这比应用包残留更强，因为它直接涉及实时加载器行为、进程特化副作用或进程运行状态。",
+        "No positive runtime signal surfaced in the current process." to "当前进程未发现明确的运行时阳性信号。",
+        "No positive signal surfaced, but a major scan path was unavailable so the result is support-only." to "未发现阳性信号，但有主要扫描路径不可用，因此该结果仅供辅助判断。",
+        "Grant self-domain" to "授权自域",
+        "Grant isolated-domain" to "授权隔离域",
+        "Grant handle" to "授权句柄",
+        "Grant caller binding" to "授权调用方绑定",
+        "key visibility" to "密钥可见性",
+        "mount" to "挂载",
+        "DRM consistency" to "DRM 一致性",
+        "boot state" to "启动状态",
+        "startup" to "启动阶段",
+        "native" to "原生",
+        "property" to "属性",
+        "virtualization" to "虚拟化",
+
         // TEE report headlines and concise explanations.
         "Attestation aligned; local probes need review" to "认证结果一致，但本地探针需要核查",
         "Local TEE attestation checks aligned" to "本地 TEE 认证检查一致",
@@ -996,6 +1164,111 @@ object HomeChineseText {
             .matchEntire(text)?.let {
                 return "在 ${it.groupValues[2]} 个类别中命中 ${it.groupValues[1]} 个应用包。除非发现 HMA 隐藏，否则应用包命中仅计为警告。${it.groupValues[3]}"
             }
+        Regex("""^Listed (\\d+) services\\.$""").matchEntire(text)?.let {
+            return "已列出 ${it.groupValues[1]} 个服务。"
+        }
+        Regex("""^PackageManager still exposed only (\\d+) visible packages, which is unusually low and can happen under HMA-style whitelist filtering\\.$""")
+            .matchEntire(text)?.let {
+                return "PackageManager 仍只显示 ${it.groupValues[1]} 个可见应用包，数量异常偏低，可能与 HMA 类白名单过滤有关。"
+            }
+        Regex("""^PackageManager reported a full inventory surface but returned only (\\d+) visible packages\\. That is unusually low for a modern device and can happen under HMA-style whitelist filtering\\.$""")
+            .matchEntire(text)?.let {
+                return "PackageManager 声称提供完整应用清单，但只返回 ${it.groupValues[1]} 个可见应用包；这对现代设备来说异常偏低，可能与 HMA 类白名单过滤有关。"
+            }
+        Regex("""^Consistent \\((\\d+)\\)$""").matchEntire(text)?.let {
+            return "一致（${it.groupValues[1]} 个来源）"
+        }
+        Regex("""^No readable data surfaced for (.+)\\.$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}未读取到可用数据。"
+        }
+        Regex("""^(.+) across sources$""").matchEntire(text)?.let {
+            return "${translate(it.groupValues[1])}（跨来源）"
+        }
+        Regex("""^Result: (.*)$""").matchEntire(text)?.let {
+            return "结果：${it.groupValues[1]}"
+        }
+        Regex("""^Probe available: (.*)$""").matchEntire(text)?.let {
+            return "探针可用：${it.groupValues[1]}"
+        }
+        Regex("""^Distinct views: (.*)$""").matchEntire(text)?.let {
+            return "不同视图数：${it.groupValues[1]}"
+        }
+        Regex("""^Expected views: (.*)$""").matchEntire(text)?.let {
+            return "预期视图数：${it.groupValues[1]}"
+        }
+        Regex("""^Scanned PIDs: (.*)$""").matchEntire(text)?.let {
+            return "已扫描 PID：${it.groupValues[1]}"
+        }
+        Regex("""^Divergent: (.*)$""").matchEntire(text)?.let {
+            return "存在差异：${it.groupValues[1]}"
+        }
+        Regex("""^Root token hit: (.*)$""").matchEntire(text)?.let {
+            return "Root 标记命中：${it.groupValues[1]}"
+        }
+        Regex("""^Matched token: (.*)$""").matchEntire(text)?.let {
+            return "匹配标记：${it.groupValues[1]}"
+        }
+        Regex("""^Matched mountinfo line: (.*)$""").matchEntire(text)?.let {
+            return "匹配的 mountinfo 行：${it.groupValues[1]}"
+        }
+        Regex("""^Detail: (.*)$""").matchEntire(text)?.let {
+            return "详情：${it.groupValues[1]}"
+        }
+        Regex("""^Source: (.*)$""").matchEntire(text)?.let {
+            return "来源：${it.groupValues[1]}"
+        }
+        Regex("""^Category: (.*)$""").matchEntire(text)?.let {
+            return "类别：${it.groupValues[1]}"
+        }
+        Regex("""^Observed: (.*)$""").matchEntire(text)?.let {
+            return "观察值：${it.groupValues[1]}"
+        }
+        Regex("""^Allowed: (.*)$""").matchEntire(text)?.let {
+            return "允许：${it.groupValues[1]}"
+        }
+        Regex("""^Denied: (.*)$""").matchEntire(text)?.let {
+            return "拒绝：${it.groupValues[1]}"
+        }
+        Regex("""^Unavailable: (.*)$""").matchEntire(text)?.let {
+            return "不可用：${it.groupValues[1]}"
+        }
+        Regex("""^Missing: (.*)$""").matchEntire(text)?.let {
+            return "缺失：${it.groupValues[1]}"
+        }
+        Regex("""^Dirty sepolicy rule: (.*)$""").matchEntire(text)?.let {
+            return "异常 SELinux 策略规则：${it.groupValues[1]}"
+        }
+        Regex("""^Droidspaces checker: (.*)$""").matchEntire(text)?.let {
+            return "Droidspaces 检查：${it.groupValues[1]}"
+        }
+        Regex("""^MSD checker: (.*)$""").matchEntire(text)?.let {
+            return "MSD 检查：${it.groupValues[1]}"
+        }
+        Regex("""^Droidspaces: (.*)$""").matchEntire(text)?.let {
+            return "Droidspaces：${it.groupValues[1]}"
+        }
+        Regex("""^MSD: (.*)$""").matchEntire(text)?.let {
+            return "MSD：${it.groupValues[1]}"
+        }
+        Regex("""^Checked (\\d+) process contexts; (\\d+) /proc reads were denied\\. Denied reads are kept as supporting visibility evidence, not direct root-process proof\\.$""")
+            .matchEntire(text)?.let {
+                return "已检查 ${it.groupValues[1]} 个进程上下文，其中 ${it.groupValues[2]} 次 /proc 读取被拒绝。读取被拒仅作为可见性辅助证据，不直接证明存在 Root 进程。"
+            }
+        Regex("""^(.+) footprints were found under /data/adb, which is a direct root-management signal\\.$""")
+            .matchEntire(text)?.let {
+                return "在 /data/adb 下发现 ${it.groupValues[1]} 痕迹，这是直接的 Root 管理信号。"
+            }
+        if (text.endsWith(" The read-only ksu_driver probe was blocked by app seccomp on this device, so the verdict falls back to prctl, self-process IOC, path, cgroup, kernel-string, and property evidence.")) {
+            val prefix = text.removeSuffix(" The read-only ksu_driver probe was blocked by app seccomp on this device, so the verdict falls back to prctl, self-process IOC, path, cgroup, kernel-string, and property evidence.")
+            return "${translate(prefix)} 此设备上的只读 ksu_driver 探针被应用 seccomp 阻止，因此结论将退回使用 prctl、当前进程 IOC、路径、cgroup、内核字符串和属性证据。"
+        }
+        if (text.endsWith(" The read-only ksu_driver probe was unavailable, so this card relied on the remaining native checks.")) {
+            val prefix = text.removeSuffix(" The read-only ksu_driver probe was unavailable, so this card relied on the remaining native checks.")
+            return "${translate(prefix)} 只读 ksu_driver 探针不可用，因此此卡片使用其余原生检查进行判断。"
+        }
+        if (text == "The sacrificial reboot() helper died under app seccomp before it could install a temporary [ksu_driver] fd. Other KernelSU checks still ran.") {
+            return "牺牲用的 reboot() 辅助进程在安装临时 [ksu_driver] 文件描述符之前被应用 seccomp 终止；其他 KernelSU 检查仍已运行。"
+        }
         if (text.startsWith("Scanned at ") && "\nTotal time " in text) {
             return text.replaceFirst("Scanned at ", "扫描时间：").replace("\nTotal time ", "\n总耗时：")
         }
