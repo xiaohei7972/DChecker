@@ -153,6 +153,18 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `remaining expanded detail labels are localized`() {
+        assertEquals("策略版本", HomeChineseText.translate("Policy version"))
+        assertEquals("进程上下文", HomeChineseText.translate("Process context"))
+        assertEquals("Root 守护进程", HomeChineseText.translate("Root daemons"))
+        assertEquals("完整属性审计", HomeChineseText.translate("Full property audit"))
+        assertEquals("应用包可见性", HomeChineseText.translate("Package visibility"))
+        assertEquals("强信号", HomeChineseText.translate("Strong signals"))
+        assertEquals("ClassLoader 命中", HomeChineseText.translate("ClassLoader hits"))
+        assertEquals("HMA 不一致", HomeChineseText.translate("HMA mismatch"))
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
