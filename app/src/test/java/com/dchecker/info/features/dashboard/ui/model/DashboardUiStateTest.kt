@@ -301,6 +301,22 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `zygisk and dangerous apps probe details are localized`() {
+        assertEquals(
+            "陷阱特征不一致",
+            HomeChineseText.translate("Trap signature mismatch"),
+        )
+        assertEquals(
+            "Scene debugfs 上下文：u:object_r:debugfs:s0",
+            HomeChineseText.translate("Scene debugfs context: u:object_r:debugfs:s0"),
+        )
+        assertEquals(
+            "127.0.0.1:4567 收到无效载荷后立即关闭连接",
+            HomeChineseText.translate("127.0.0.1:4567 invalid payload closed immediately"),
+        )
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
