@@ -165,6 +165,29 @@ class DashboardUiStateTest {
     }
 
     @Test
+    fun `probe and repository details are localized`() {
+        assertEquals(
+            "使用 0xDEADBEEF 选项执行 KernelSU 特征 prctl 探针。",
+            HomeChineseText.translate("KernelSU magic prctl probe using option 0xDEADBEEF."),
+        )
+        assertEquals(
+            "通过反射检查 XposedBridge.disableHooks 与 XposedBridge.sHookedMethodCallbacks，以确认实时桥接状态，而非仅依赖类残留。",
+            HomeChineseText.translate(
+                "Reflects XposedBridge.disableHooks and XposedBridge.sHookedMethodCallbacks to confirm live bridge state rather than class residue alone.",
+            ),
+        )
+        assertEquals(
+            "创建离屏 EGL 上下文并检查 GL_VENDOR、GL_RENDERER 与 GL_VERSION。",
+            HomeChineseText.translate(
+                "Builds an off-screen EGL context and inspects GL_VENDOR, GL_RENDERER, and GL_VERSION.",
+            ),
+        )
+        assertEquals("7 个来源", HomeChineseText.translate("7 source(s)"))
+        assertEquals("3 条痕迹", HomeChineseText.translate("3 trace(s)"))
+        assertEquals("2 个备用读取", HomeChineseText.translate("2 fallback(s)"))
+    }
+
+    @Test
     fun `danger tee card status propagates to dashboard overview`() {
         val overview = buildDashboardOverview(
             contributions = listOf(
